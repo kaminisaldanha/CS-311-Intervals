@@ -1,5 +1,19 @@
-
+/**
+* Represent's the nodes of the red-black tree.
+* 
+* @author Smruthi Sandhanam, Meghna Vaidya, and Kamini Saldanha
+* 
+*/
+ 
+//Use 0 and 1 to represent the colors red and black, respectively. 
 public class Node {
+	
+	private Node right, left; 
+	private int key, p, val, maxval, color;
+	private Endpoint endpoint, emax;
+	private int red = 0;
+	
+	
 	//Returns the parent of this node
 	public Node getParent(){
 		return null;
@@ -7,48 +21,53 @@ public class Node {
 	
 	//Returns the left child
 	public Node getLeft(){
-		return null;
+		return left;
 	}
 	
 	//Returns the right child
 	public Node getRight(){
-		return null;
+		return right;
 	}
 	
 	//Returns the endpoint value, which is an integer
 	public int getKey(){
-		return -1;
+		return key;
 	}
 	
 	//Returns the value of the function p based on this endpoint
 	public int getP(){
-		return -1;
+		return p;
 	}
 	
 	//Returns the val of the node as described in this assignment
 	public int getVal(){
-		return -1;
+		return val;
 	}
 	
 	//Returns the maxval of the node as described in this assignment
 	public int getMaxVal(){
-		return -1;
+		return maxval;
 	}
 	
 	//Returns the Endpoint object that this node represents.
 	public Endpoint getEndpoint(){
-		return null;
+		return endpoint;
 	}
 	
 	//Returns an Endpoint object that represents emax. Calling this method on the root node 
 	//will give the Endpoint object whose getValue() provides a point of maximum overlap
 	public Endpoint getEmax(){
-		return null;
+		return emax;
 	}
 	
 	//Returns 0 if red. Returns 1 if black
 	public int getColor(){
-		return -1;
+		if(color == red){
+			return 0;
+		}
+		else{
+			return 1;
+		}
 	}
 	
 }

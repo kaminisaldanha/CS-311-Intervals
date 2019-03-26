@@ -1,3 +1,10 @@
+/**
+* Represent's an endpoint and its value
+* 
+* @author Smruthi Sandhanam, Meghna Vaidya, and Kamini Saldanha
+* 
+*/
+
 
 public class Endpoint {
 	
