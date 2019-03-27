@@ -114,7 +114,10 @@ public class RBTree {
 			RBInsertFixup(node);
 		}	
 	}
-	
+	/**
+	 * 
+	 * @param node
+	 */
 	public void RBInsertFixup(Node node) {
 		
 		while(node.getParent().getColor() == 1) {
@@ -123,44 +126,90 @@ public class RBTree {
 		
 	}
 	
+	/**
+	 * 
+	 * @param x
+	 */
 	public void LeftRotate(Node x) 
 	{
 		Node y = new Node();
 		y = x.getRight();
 		x.setRight(y.getLeft());
-		
-		if (y.getLeft() != this.getNILNode()) {
+		if (y.getLeft() != this.getNILNode()) 
+		{
 			y.getLeft().setParent(x);
 		}
 		
 		y.setParent(x.getParent());
 		
-		if (x.getParent() == this.getNILNode()) {
+		if (x.getParent() == this.getNILNode()) 
+		{
 			this.setRoot(y);
-		} else if (x == x.getParent().getLeft()) {
+		} 
+		else if (x == x.getParent().getLeft())
+		{
 			x.getParent().setLeft(y);
-		} else { 
+		} 
+		else 
+		{ 
 			x.getParent().setRight(y);
 		}
-		
 		y.setLeft(x);
 		x.setParent(y);
 		nodeValueUpdate(x);
 		
 	}
 	
+	/**
+	 * 
+	 * @param x
+	 */
 	public void RightRotate(Node x) {
-		
+		Node y = new Node();
+		y = x.getLeft();
+		x.setLeft(y.getRight());
+		if (y.getRight() != this.getNILNode()) 
+		{
+			y.getRight().setParent(x);
+		}
+		y.setParent(x.getParent());
+		if (x.getParent() == this.getNILNode()) 
+		{
+			this.setRoot(y);
+		}
+		else if (x == x.getParent().getLeft()) 
+		{
+			x.getParent().setLeft(y);
+		}
+		else 
+		{
+			x.getParent().setRight(y);
+		}
+		y.setRight(x);
+		x.setParent(y);
+		nodeValueUpdate(x);
 	}
 	
+	/**
+	 * 
+	 * @param z
+	 */
 	public void RBDeletion(Node z) {
 		
 	}
 	
+	/**
+	 * 
+	 * @param x
+	 */
 	private void RBDeleteFixup(Node x) {
 		
 	}
 	
+	/**
+	 * 
+	 * @param x
+	 */
 	private void nodeValueUpdate(Node x) 
 	{
 		if(x == this.getNILNode()) 
