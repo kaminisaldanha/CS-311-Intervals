@@ -7,20 +7,38 @@
 
 public class RBTree {
 	
+	/**
+	 * The root of the RB Tree
+	 */
 	private Node root;
+	/**
+	 * The number of internal nodes in the RB Tree
+	 */
 	private int size;
-	private Node sentinel;
+	/**
+	 * The height of the RB Tree
+	 */
 	private int height;
+	/**
+	 * The nil node in the RB Tree
+	 */
 	private Node nil;
 	
 	/**
 	 * RB Tree constructor. It initializes nil node as well.
 	 */
 	public RBTree() {
-		sentinel = new Node();
+
+		//intialize root and set its color to be black
+		root = new Node();
+		root.setColor(1);
+		
+		//setting nil node to be black
+		nil.setColor(1);
+		
+		//intialize the size and height of tree
 		size = 0;
 		height = 0;
-		root = nil;
 	}
 	
 	/**
@@ -40,7 +58,7 @@ public class RBTree {
 	 * @return
 	 */
 	public Node getNILNode() {
-		return null;
+		return this.nil;
 	}
 	
 	/**
@@ -60,14 +78,48 @@ public class RBTree {
 	 * @return
 	 */
 	public int getHeight() {
-		return 0;
+		return this.height;
 	}
 	
-	public void RBInsert() {
+	/**
+	 * To insert a node into the red black tree
+	 * @param node
+	 */
+	public void RBInsert(Node node) {
 		
+		Node y = nil;
+		Node x = root;
+		
+		while(x != nil) {
+			
+			y = x;
+			if(node.getKey() < x.getKey()) {
+				x = x.getLeft();
+			} else {
+				x = x.getRight();
+			}
+			
+			node.setParent(y);
+			
+			if(y == nil) {
+				root = node;
+			} else if(node.getKey() < y.getKey()) {
+				y.setLeft(node);
+			} else {
+				y.setRight(node);
+			}
+			
+			node.setLeft(nil);
+			node.setColor(0);
+			RBInsertFixup(node);
+		}	
 	}
 	
-	public void RBInsertFixup() {
+	public void RBInsertFixup(Node node) {
+		
+		while(node.getParent().getColor() == 1) {
+			
+		}
 		
 	}
 	
@@ -76,23 +128,21 @@ public class RBTree {
 		Node y = new Node();
 		y = x.getRight();
 		x.setRight(y.getLeft());
-		if (y.getLeft() != this.getNILNode()) 
-		{
+		
+		if (y.getLeft() != this.getNILNode()) {
 			y.getLeft().setParent(x);
 		}
+		
 		y.setParent(x.getParent());
-		if (x.getParent() == this.getNILNode()) 
-		{
+		
+		if (x.getParent() == this.getNILNode()) {
 			this.setRoot(y);
-		}
-		else if (x == x.getParent().getLeft()) 
-		{
+		} else if (x == x.getParent().getLeft()) {
 			x.getParent().setLeft(y);
-		}
-		else 
-		{ 
+		} else { 
 			x.getParent().setRight(y);
 		}
+		
 		y.setLeft(x);
 		x.setParent(y);
 		nodeValueUpdate(x);
