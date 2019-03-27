@@ -8,12 +8,12 @@
 public class Node {
 	
 	private Node right, left, parent; 
-	private int key, p, val, maxval, color, maxVal;
+	private int key, p, val, maxval, color;
 	private Endpoint endpoint, emax;
 	private int red = 0;
 	
 	public Node getParent(){
-		return null;
+		return parent;
 	}
 	
 	public void setParent(Node parent) {
@@ -64,8 +64,8 @@ public class Node {
 		return maxval;
 	}
 	
-	public void setMaxVal(int maxVal) {
-		this.maxVal = maxVal;
+	public void setMaxVal(int maxval) {
+		this.maxval = maxval;
 	}
 	
 	public Endpoint getEndpoint(){
