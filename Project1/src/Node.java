@@ -156,10 +156,18 @@ public class Node {
 		return emax;
 	}
 	
+	/**
+	 * 
+	 * @param sets the Endpoint object that represents emax
+	 */
 	public void setEmax(Endpoint emax) {
 		this.emax = emax;
 	}
 	
+	/**
+	 * Returns 0 if red. Returns 1 if black.
+	 * @return
+	 */
 	public int getColor(){
 		if(color == red){
 			return 0;
@@ -169,6 +177,10 @@ public class Node {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param sets the color to either 0 if red, or 1 if black
+	 */
 	public void setColor(int color){
 			this.color = color;
 	}
