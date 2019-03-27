@@ -6,20 +6,32 @@
  */
 
 public class RBTree {
+	
+	private Node root;
+	private int size;
+	private Node sentinel;
+	private int height;
+	private Node nil;
+	
 	/**
 	 * RB Tree constructor. It initializes nil node as well.
 	 */
 	public RBTree() {
-		//TODO: Add code as needed.
+		root = new Node();
+		sentinel = new Node();
+		size = 0;
 	}
 	
 	/**
-	 * Returns the root of teh tree.
+	 * Returns the root of the tree.
 	 * @return
 	 */
 	public Node getRoot() {
-		//TODO: Modify it accordingly.
-		return null;
+		return this.root;
+	}
+	
+	public void setRoot(Node n) {
+		this.root = n;
 	}
 	
 	/**
@@ -36,10 +48,12 @@ public class RBTree {
 	 * @return
 	 */
 	public int getSize() {
-		//TODO: Modify it accordingly.
-		return 0;
+		return this.size;
 	}
 	
+	public void setSize(int size) {
+		this.size = size;
+	}
 	
 	/**
 	 * Returns the height of the tree.
@@ -50,6 +64,29 @@ public class RBTree {
 		return 0;
 	}
 	
+	public void RBInsert() {
+		
+	}
+	
+	public void RBInsertFixup() {
+		
+	}
+	
+	public void LeftRotate(Node x) {
+		
+	}
+	
+	public void RightRotate(Node x) {
+		
+	}
+	
+	public void RBDeletion(Node z) {
+		
+	}
+	
+	private void RBDeleteFixup(Node x) {
+		
+	}
 	
 
 }
