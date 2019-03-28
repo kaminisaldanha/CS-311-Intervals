@@ -113,40 +113,43 @@ public class RBTree {
 			node.setColor(0);
 			RBInsertFixup(node);
 		}	
+		
+		size++;
+		//READ-ME: figure out how to update the height of the tree if it changes
 	}
 	
 	/**
 	 * 
-	 * @param node
+	 * @param z
 	 */
-	public void RBInsertFixup(Node node) {
+	private void RBInsertFixup(Node z) {
 		
-		while(node.getParent().getColor() == 1) {
-			if(node.getParent() == node.getParent().getParent().getLeft()) {
+		while(z.getParent().getColor() == 1) {
+			if(z.getParent() == z.getParent().getParent().getLeft()) {
 				
-				Node y = node.getParent().getParent().getRight();
+				Node y = z.getParent().getParent().getRight();
 				
 				if(y.getColor() == 1) {
 					
-					node.getParent().setColor(0);
+					z.getParent().setColor(0);
 					y.setColor(0);
-					node.getParent().getParent().setColor(1);
-					node = node.getParent().getParent();
+					z.getParent().getParent().setColor(1);
+					z = z.getParent().getParent();
 					
 				} else {
 					
-					if(node == node.getParent().getRight()) {
-						node = node.getParent();
-						LeftRotate(node);
+					if(z == z.getParent().getRight()) {
+						z = z.getParent();
+						LeftRotate(z);
 					}
 					
-					node.getParent().setColor(0);
-					node.getParent().getParent().setColor(1);
-					RightRotate(node.getParent().getParent());
+					z.getParent().setColor(0);
+					z.getParent().getParent().setColor(1);
+					RightRotate(z.getParent().getParent());
 					
 				}
 			} else {
-				
+				//READ-ME: figuring out what to put here
 			}
 		}
 		
@@ -158,7 +161,7 @@ public class RBTree {
 	 * 
 	 * @param x
 	 */
-	public void LeftRotate(Node x) 
+	private void LeftRotate(Node x) 
 	{
 		Node y = new Node();
 		y = x.getRight();
@@ -187,8 +190,8 @@ public class RBTree {
 	/**
 	 * 
 	 * @param x
-	 */
-	public void RightRotate(Node x) {
+	 */ 
+	private void RightRotate(Node x) {
 		
 		Node y = new Node();
 		y = x.getLeft();
@@ -214,10 +217,69 @@ public class RBTree {
 	}
 	
 	/**
-	 * 
-	 * @param z
+	 * Deleting a node from a RB Tree
+	 * @param z is the node you want to delete from the RB Tree
 	 */
 	public void RBDeletion(Node z) {
+		
+		Node x;
+		Node y = z;
+		int yOrigColor = y.getColor();
+		
+		if(z.getLeft() == nil) {
+			x = z.getRight();
+			RBTransplant(z, z.getRight());
+		} else if(z.getRight() == nil) {
+			x = z.getLeft();
+			RBTransplant(z, z.getLeft());
+		} else {
+			y = Minimum(z.getRight());
+			yOrigColor = y.getColor();
+			x = y.getRight();
+			
+			if(y.getParent() == z) {
+				x.setParent(y);
+			} else {
+				RBTransplant(y, y.getRight());
+				y.setRight(z.getRight());
+				y.getRight().setParent(y);
+			}
+			
+			RBTransplant(z, y);
+			y.setLeft(z.getLeft());
+			y.getLeft().setParent(y);
+			y.setColor(z.getColor());
+		}
+		
+		if(yOrigColor == 0) {
+			RBDeleteFixup(x);
+		}
+		
+		size--;
+		//READ-ME: figure out how to update the height of the tree if it changes
+		
+	}
+	
+	/**
+	 * Returns the minimum key-value from a subtree rooted at the node x 
+	 * @param x is the node at the root of the subtree you are finding the minimum key-value for
+	 * @return
+	 */
+	private Node Minimum(Node x) {
+		
+		while(x.getLeft() != null) {
+			x = x.getLeft();
+		}
+		
+		return x;
+	}
+
+	/**
+	 * 
+	 * @param u
+	 * @param v
+	 */
+	private void RBTransplant(Node u, Node v) {
 		
 	}
 	
@@ -226,6 +288,8 @@ public class RBTree {
 	 * @param x
 	 */
 	private void RBDeleteFixup(Node x) {
+		
+		
 		
 	}
 	
