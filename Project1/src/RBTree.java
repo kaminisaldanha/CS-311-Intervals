@@ -77,8 +77,19 @@ public class RBTree {
 	 * Returns the height of the tree.
 	 * @return
 	 */
-	public int getHeight() {
+	public int getHeight() { //READ-ME: not sure if we can update height like this in a get method?? 
+		this.height = findHeight(root);
 		return this.height;
+	}
+	
+	private int findHeight(Node root) {
+		
+		if(root == null) {return 0;}
+		
+		int leftHeight = findHeight(root.getLeft());
+		int rightHeight = findHeight(root.getRight());
+		
+		return Math.max(leftHeight, rightHeight) + 1;
 	}
 	
 	/**
@@ -91,7 +102,6 @@ public class RBTree {
 		Node x = root;
 		
 		while(x != nil) {
-			
 			y = x;
 			if(node.getKey() < x.getKey()) {
 				x = x.getLeft();
@@ -115,7 +125,6 @@ public class RBTree {
 		}	
 		
 		size++;
-		//READ-ME: figure out how to update the height of the tree if it changes
 	}
 	
 	/**
@@ -256,8 +265,6 @@ public class RBTree {
 		}
 		
 		size--;
-		//READ-ME: figure out how to update the height of the tree if it changes
-		
 	}
 	
 	/**
@@ -274,15 +281,7 @@ public class RBTree {
 		return x;
 	}
 
-	/**
-	 * 
-	 * @param u
-	 * @param v
-	 */
-	private void RBTransplant(Node u, Node v) {
-		
-	}
-	
+
 	/**
 	 * 
 	 * @param x
