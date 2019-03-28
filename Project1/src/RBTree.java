@@ -77,7 +77,7 @@ public class RBTree {
 	 * Returns the height of the tree.
 	 * @return
 	 */
-	public int getHeight() { //READ-ME: not sure if we can update height like this in a get method?? 
+	public int getHeight() { //READ-ME: not sure if we can update height like this in a get method?? also not sure if this is meant to return black height.
 		this.height = findHeight(root);
 		return this.height;
 	}
