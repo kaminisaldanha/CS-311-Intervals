@@ -34,10 +34,11 @@ public class RBTree {
 		root.setColor(1);
 		
 		//setting nil node to be black
+		nil = new Node();
 		nil.setColor(1);
 		
 		//intialize the size and height of tree
-		size = 0;
+		size = 1;
 		height = 0;
 	}
 	
@@ -69,16 +70,12 @@ public class RBTree {
 		return this.size;
 	}
 	
-	public void setSize(int size) {
-		this.size = size;
-	}
 	
 	/**
 	 * Returns the height of the tree.
 	 * @return
 	 */
-	public int getHeight() { //READ-ME: not sure if we can update height like this in a get method?? also not sure if this is meant to return black height.
-		this.height = findHeight(root);
+	public int getHeight() { //READ-ME: not sure if this is meant to return black height.
 		return this.height;
 	}
 	
@@ -125,6 +122,7 @@ public class RBTree {
 		}	
 		
 		size++;
+		this.height = findHeight(root);
 	}
 	
 	/**
@@ -265,6 +263,7 @@ public class RBTree {
 		}
 		
 		size--;
+		this.height = findHeight(root);
 	}
 	
 	/**
