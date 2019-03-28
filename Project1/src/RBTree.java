@@ -220,7 +220,7 @@ public class RBTree {
 	 * Deleting a node from a RB Tree
 	 * @param z is the node you want to delete from the RB Tree
 	 */
-	public void RBDeletion(Node z) {
+	public void RBDelete(Node z) {
 		
 		Node x;
 		Node y = z;
@@ -291,6 +291,28 @@ public class RBTree {
 		
 		
 		
+	}
+	
+	/**
+	 * 
+	 * @param n
+	 * @param v
+	 */
+	private void RBTransplant(Node n, Node v) 
+	{
+		if (n.getParent() == this.getNILNode()) 
+		{
+			this.root = v;
+		}
+		else if (n == n.getParent().getLeft()) 
+		{
+			n.getParent().setLeft(v);
+		}
+		else 
+		{
+			n.getParent().setRight(v);
+		}
+		v.setParent(n.getParent());
 	}
 	
 	/**
