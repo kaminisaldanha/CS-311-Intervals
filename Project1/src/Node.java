@@ -112,8 +112,8 @@ public class Node {
 	 * @param p
 	 * @return
 	 */
-	public void setVal(Node node) {
-		this.val = calculateVal(node);
+	public void setVal() {
+		this.val = calculateVal();
 	}
 	
 	//READ-ME: test this
