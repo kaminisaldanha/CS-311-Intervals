@@ -115,8 +115,13 @@ public class Node {
 		this.val = p;
 	}
 	
-	private int calculateVal() {
-		return 0;
+	//READ-ME: test this
+	private void calculateVal(Node node, int sum) {
+		if(node != null) {
+			sum += node.getP();
+			calculateVal(node.left, sum);
+			calculateVal(node.right, sum);
+		}
 	}
 	
 	/**
