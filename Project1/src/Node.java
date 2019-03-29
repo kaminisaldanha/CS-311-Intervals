@@ -18,12 +18,13 @@ public class Node {
 		this.parent = null;
 	}
 	
+	
 	/**
 	 * Returns the parent of this node.
 	 * @return
 	 */
 	public Node getParent(){
-		return parent;
+		return this.parent;
 	}
 	
 	/**
@@ -111,17 +112,27 @@ public class Node {
 	 * @param p
 	 * @return
 	 */
-	public void setVal(int p) {
-		this.val = p;
+	public void setVal(Node node) {
+		this.val = calculateVal(node);
 	}
 	
 	//READ-ME: test this
-	private void calculateVal(Node node, int sum) {
-		if(node != null) {
-			sum += node.getP();
-			calculateVal(node.left, sum);
-			calculateVal(node.right, sum);
+	private int calculateVal(Node node) {
+		
+		int sum, leftSum, rightSum;
+		
+		//if no node p is 0
+		if(node == null) {
+			return 0;
 		}
+		
+		//find P's in subtree
+		leftSum = calculateVal(node.left);
+		rightSum = calculateVal(node.right);
+		
+		//add all p's together
+		sum = leftSum + rightSum + node.getP();
+		return sum;
 	}
 	
 	/**
