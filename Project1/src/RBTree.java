@@ -222,7 +222,7 @@ public class RBTree {
 		x.setParent(y);
 		nodeValueUpdate(x);
 	}
-	
+
 	/**
 	 * Deleting a node from a RB Tree
 	 * @param z is the node you want to delete from the RB Tree
@@ -282,77 +282,13 @@ public class RBTree {
 
 
 	/**
-	 * Recoloured nodes and rotated to make sure thatvred-black properties hold for new tree.
-	 * @param z
+	 * 
+	 * @param x
 	 */
-	private void RBDeleteFixup(Node z) 
-	{
-		while (z != this.getNILNode() && z.getColor() == 1) 
-		{
-			if (z == z.getParent().getLeft()) 
-			{
-				Node w = z.getParent().getRight();
-				if (w.getColor() == 0) 
-				{
-					w.setColor(1);
-					z.getParent().setColor(0);
-					LeftRotate(z.getParent());
-					w = z.getParent().getRight();
-				}
-				if (w.getLeft().getColor() == 1 && w.getRight().getColor() == 1)
-				{
-					w.setColor(0);
-					z = z.getParent();
-				}
-				else 
-				{
-					if (w.getRight().getColor() == 1) 
-					{
-						w.getLeft().setColor(1);
-						w.setColor(0);
-						RightRotate(w);
-						w = z.getParent().getRight();
-					}
-					w.setColor(z.getParent().getColor());
-					z.getParent().setColor(1);
-					w.getRight().setColor(1);
-					LeftRotate(z.getParent());
-					z = this.getRoot();
-				}
-			}
-			else 
-			{
-				Node w = z.getParent().getLeft();
-				if (w.getColor() == 0) 
-				{
-					w.setColor(1);
-					z.getParent().setColor(0);
-					RightRotate(z.getParent());
-					w = z.getParent().getLeft();
-				}
-				if (w.getLeft().getColor() == 1 && w.getRight().getColor() == 1) 
-				{
-					w.setColor(0);
-					z = z.getParent();
-				}
-				else 
-				{
-					if (w.getLeft().getColor() == 1)
-					{
-						w.getRight().setColor(1);
-						w.setColor(0);
-						LeftRotate(w);
-						w = z.getParent().getLeft();
-					}
-					w.setColor(z.getParent().getColor());
-					z.getParent().setColor(1);
-					w.getLeft().setColor(1);
-					RightRotate(z.getParent());
-					z = this.getRoot();
-				}
-			}
-		}
-		z.setColor(1);
+	private void RBDeleteFixup(Node x) {
+		
+		
+		
 	}
 	
 	/**

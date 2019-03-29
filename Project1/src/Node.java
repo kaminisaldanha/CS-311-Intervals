@@ -13,7 +13,6 @@ public class Node {
 	private int red = 0;
 	
 	public Node(){
-		
 		this.right = null;
 		this.left = null;
 		this.parent = null;
@@ -136,6 +135,10 @@ public class Node {
 		this.maxval = maxval;
 	}
 	
+	private int calculateMaxVal() {
+		return 0;
+	}
+	
 	/**
 	 * Returns the Endpoint object that this node represents.
 	 * @return
@@ -168,6 +171,10 @@ public class Node {
 	 */
 	public void setEmax(Endpoint emax) {
 		this.emax = emax;
+	}
+	
+	private Endpoint calculateEmax() {
+		return null;
 	}
 	
 	/**
