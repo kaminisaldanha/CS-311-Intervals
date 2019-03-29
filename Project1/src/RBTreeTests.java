@@ -9,8 +9,8 @@ public class RBTreeTests {
 	 */
 	@Test
 	public void rootSetupCheck() {
+		//creating the tree
 		RBTree rbtree = new RBTree();
-		
 		//checks that the color of the root is black
 		assertEquals(rbtree.getRoot().getColor(), 1);
 		//checks that the size of the tree is initially 1
@@ -18,5 +18,13 @@ public class RBTreeTests {
 		//checks that the height of the tree is initially 0
 		assertEquals(rbtree.getHeight(), 0);
 	}
+	
+	@Test
+	public void addNodeTest1() {
+		
+		
+		
+	}
+	
 
 }
