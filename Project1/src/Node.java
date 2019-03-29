@@ -7,7 +7,7 @@
   
 public class Node {
 	
-	private Node cur, right, left, parent; 
+	private Node right, left, parent; 
 	private int key, p, val, maxval, color;
 	private Endpoint endpoint, emax;
 	private int red = 0;
@@ -16,15 +16,6 @@ public class Node {
 		this.right = null;
 		this.left = null;
 		this.parent = null;
-	}
-	
-	
-	public Node getCur() {
-		return this.cur;
-	}
-	
-	public void setCur(Node cur) {
-		this.cur = cur;
 	}
 	
 	/**
