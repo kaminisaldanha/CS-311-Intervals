@@ -7,7 +7,7 @@
   
 public class Node {
 	
-	private Node right, left, parent; 
+	private Node cur, right, left, parent; 
 	private int key, p, val, maxval, color;
 	private Endpoint endpoint, emax;
 	private int red = 0;
@@ -18,6 +18,14 @@ public class Node {
 		this.parent = null;
 	}
 	
+	
+	public Node getCur() {
+		return this.cur;
+	}
+	
+	public void setCur(Node cur) {
+		this.cur = cur;
+	}
 	
 	/**
 	 * Returns the parent of this node.
@@ -112,8 +120,8 @@ public class Node {
 	 * @param p
 	 * @return
 	 */
-	public void setVal() {
-		this.val = calculateVal();
+	public void setVal(Node node) {
+		this.val = calculateVal(node);
 	}
 	
 	//READ-ME: test this
