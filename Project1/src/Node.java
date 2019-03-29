@@ -13,6 +13,7 @@ public class Node {
 	private int red = 0;
 	
 	public Node(){
+		
 		this.right = null;
 		this.left = null;
 		this.parent = null;
@@ -103,15 +104,20 @@ public class Node {
 	 * @return
 	 */
 	public int getVal(){
-		return val;
+		return this.val;
 	}
 	
 	/**
 	 * 
-	 * @param sets the val of the node as described in this assignment.
+	 * @param p
+	 * @return
 	 */
-	public void setVal(int val) {
-		this.val = val;
+	public void setVal(int p) {
+		this.val = p;
+	}
+	
+	private int calculateVal() {
+		return 0;
 	}
 	
 	/**
