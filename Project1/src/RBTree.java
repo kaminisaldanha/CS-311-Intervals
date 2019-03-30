@@ -29,16 +29,14 @@ public class RBTree {
 	 */
 	public RBTree() {
 
-		//intialize root and set its color to be black
-		root = new Node();
-		root.setColor(1);
-		
 		//setting nil node to be black
 		nil = new Node();
 		nil.setColor(1);
 		
+		root = nil; //to start with
+		
 		//intialize the size and height of tree
-		size = 1;
+		size = 0;
 		height = 0;
 	}
 	
@@ -52,6 +50,7 @@ public class RBTree {
 	
 	public void setRoot(Node n) {
 		this.root = n;
+		this.root.setColor(1);
 	}
 	
 	/**
@@ -68,6 +67,10 @@ public class RBTree {
 	 */
 	public int getSize() {
 		return this.size;
+	}
+	
+	public void setSize(int size) {
+		this.size = size;
 	}
 	
 	
@@ -91,36 +94,37 @@ public class RBTree {
 	
 	/**
 	 * To insert a node into the red black tree
-	 * @param node
+	 * @param z
 	 */
-	public void RBInsert(Node node) {
+	public void RBInsert(Node z) {
 		
-		Node y = nil;
-		Node x = root;
+		Node y = this.nil;
+		Node x = this.root;
 		
-		while(x != nil) {
+		while(x != this.nil) {
 			y = x;
-			if(node.getKey() < x.getKey()) {
+			if(z.getKey() < x.getKey()) {
 				x = x.getLeft();
 			} else {
 				x = x.getRight();
 			}
+		}
 			
-			node.setParent(y);
-			
-			if(y == nil) {
-				root = node;
-			} else if(node.getKey() < y.getKey()) {
-				y.setLeft(node);
-			} else {
-				y.setRight(node);
-			}
-			
-			node.setLeft(nil);
-			node.setColor(0);
-			RBInsertFixup(node);
-		}	
+		z.setParent(y);
 		
+		if(y == this.nil) {
+			root = z;
+		} else if(z.getKey() < y.getKey()) {
+			y.setLeft(z);
+		} else {
+			y.setRight(z);
+		}
+		
+		z.setLeft(this.nil);
+		z.setRight(this.nil);
+		z.setColor(0);
+		RBInsertFixup(z);
+			
 		size++;
 		this.height = findHeight(root);
 	}
@@ -131,16 +135,18 @@ public class RBTree {
 	 */
 	private void RBInsertFixup(Node z) {
 		
-		while(z.getParent().getColor() == 1) {
+		Node y;
+		
+		while(z.getParent().getColor() == 0) {
 			if(z.getParent() == z.getParent().getParent().getLeft()) {
 				
-				Node y = z.getParent().getParent().getRight();
+				y = z.getParent().getParent().getRight();
 				
-				if(y.getColor() == 1) {
+				if(y.getColor() == 0) {
 					
-					z.getParent().setColor(0);
-					y.setColor(0);
-					z.getParent().getParent().setColor(1);
+					z.getParent().setColor(1);
+					y.setColor(1);
+					z.getParent().getParent().setColor(0);
 					z = z.getParent().getParent();
 					
 				} else {
@@ -150,13 +156,28 @@ public class RBTree {
 						LeftRotate(z);
 					}
 					
-					z.getParent().setColor(0);
-					z.getParent().getParent().setColor(1);
+					z.getParent().setColor(1);
+					z.getParent().getParent().setColor(0);
 					RightRotate(z.getParent().getParent());
 					
 				}
 			} else {
-				//READ-ME: figuring out what to put here
+					
+				y = z.getParent().getParent().getLeft();
+				if(y.getColor() == 0) {
+					z.getParent().setColor(1);
+					y.setColor(1);
+					z.getParent().getParent().setColor(0);
+					z = z.getParent().getParent();
+				} else {
+					if(z == z.getParent().getLeft()) {
+						z = z.getParent();
+						LeftRotate(z);
+					}
+					z.getParent().setColor(1);
+					z.getParent().getParent().setColor(0);
+					RightRotate(z.getParent().getParent());
+				}
 			}
 		}
 		
