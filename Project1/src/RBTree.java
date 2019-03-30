@@ -164,7 +164,7 @@ public class RBTree {
 			} else {
 					
 				y = z.getParent().getParent().getLeft();
-				if(y.getColor() == 0) {
+				if(y != null && y.getColor() == 0) {
 					z.getParent().setColor(1);
 					y.setColor(1);
 					z.getParent().getParent().setColor(0);
