@@ -34,7 +34,10 @@ public class RBTree {
 		nil.setColor(1);
 		
 		root = nil; //to start with
-		
+		nil.setLeft(nil);	
+		nil.setRight(nil);		
+		nil.setParent(nil);		
+
 		//intialize the size and height of tree
 		size = 0;
 		height = 0;
@@ -191,8 +194,7 @@ public class RBTree {
 	 */
 	private void LeftRotate(Node x) 
 	{
-		Node y = new Node();
-		y = x.getRight();
+		Node y = x.getRight();
 		x.setRight(y.getLeft());
 		
 		if (y.getLeft() != this.getNILNode()) {
@@ -221,8 +223,7 @@ public class RBTree {
 	 */ 
 	private void RightRotate(Node x) {
 		
-		Node y = new Node();
-		y = x.getLeft();
+		Node y = x.getLeft();
 		x.setLeft(y.getRight());
 		
 		if (y.getRight() != this.getNILNode()) {

@@ -14,7 +14,7 @@ public class RBTreeTests {
 		//checks that the color of the root is black
 		assertEquals(rbtree.getRoot().getColor(), 1);
 		//checks that the size of the tree is initially 1
-		assertEquals(rbtree.getSize(), 0);
+		assertEquals(rbtree.getSize(), 1);
 		//checks that the height of the tree is initially 0
 		assertEquals(rbtree.getHeight(), 0);
 	}
