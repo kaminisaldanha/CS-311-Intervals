@@ -13,9 +13,16 @@ public class Node {
 	private int red = 0;
 	
 	public Node(){
-		this.right = null;
-		this.left = null;
 		this.parent = null;
+        this.left = null;
+        this.right = null;
+        this.key = -1;
+        this.p = 0;
+        this.val = 0;
+        this.maxval = 0;
+        this.endpoint = null;
+        this.emax = null;
+        this.color = 1;
 	}
 	
 	/**
@@ -152,7 +159,7 @@ public class Node {
 	
 	private int calculateMaxVal(Node v) {
 		
-		int max, case1, case2, case3;
+		int sum, case1, case2, case3;
 		
 		if(v == null) {
 			return 0;
@@ -162,8 +169,8 @@ public class Node {
 		case2 = calculateVal(v.left) + v.getP();
 		case3 = calculateVal(v.left) + v.getP() + calculateMaxVal(v.right);
 		
-		max = Math.max(case1, Math.max(case2, case3));
-		return max;
+		sum = case1 + case2 + case3; 
+		return sum;
 
 	}
 	
@@ -201,8 +208,8 @@ public class Node {
 		this.emax = emax;
 	}
 	
-	private Endpoint calculateEmax(Node v) {
-			return null;
+	private Endpoint calculateEmax() {
+		return null;
 	}
 	
 	/**
