@@ -146,12 +146,25 @@ public class Node {
 	 * 
 	 * @param sets the maxval of the node as described in this assignment.
 	 */
-	public void setMaxVal(int maxval) {
-		this.maxval = maxval;
+	public void setMaxVal(Node node) {
+		this.maxval = calculateMaxVal(node);
 	}
 	
-	private int calculateMaxVal() {
-		return 0;
+	private int calculateMaxVal(Node v) {
+		
+		int sum, case1, case2, case3;
+		
+		if(v == null) {
+			return 0;
+		}
+		
+		case1 = calculateMaxVal(v.left);
+		case2 = calculateVal(v.left) + v.getP();
+		case3 = calculateVal(v.left) + v.getP() + calculateMaxVal(v.right);
+		
+		sum = case1 + case2 + case3; 
+		return sum;
+
 	}
 	
 	/**

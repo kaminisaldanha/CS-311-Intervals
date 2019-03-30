@@ -384,13 +384,13 @@ public class RBTree {
 	{
 		if(x == this.getNILNode()) 
 		{
-			x.setVal(x);
-			x.setMaxVal(0);
+			x.setVal(null);
+			x.setMaxVal(null);
 			x.setEmax(this.getNILNode().getEmax());
 		}
 		else 
 		{
-			x.setVal(x);
+			x.setVal(x.getLeft().getVal() + x.getP() + x.getRight().getVal());
 			x.setMaxVal(Math.max(x.getLeft().getMaxVal(), Math.max(x.getLeft().getVal() + x.getP(), x.getLeft().getVal() + x.getP() + x.getRight().getMaxVal())));
 			if(x.getLeft().getEmax() != this.getNILNode().getEmax() && x.getMaxVal() == x.getLeft().getMaxVal()) 
 			{
