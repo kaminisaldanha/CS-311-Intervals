@@ -152,7 +152,7 @@ public class Node {
 	
 	private int calculateMaxVal(Node v) {
 		
-		int sum, case1, case2, case3;
+		int max, case1, case2, case3;
 		
 		if(v == null) {
 			return 0;
@@ -162,8 +162,8 @@ public class Node {
 		case2 = calculateVal(v.left) + v.getP();
 		case3 = calculateVal(v.left) + v.getP() + calculateMaxVal(v.right);
 		
-		sum = case1 + case2 + case3; 
-		return sum;
+		max = Math.max(case1, Math.max(case2, case3));
+		return max;
 
 	}
 	
@@ -201,8 +201,8 @@ public class Node {
 		this.emax = emax;
 	}
 	
-	private Endpoint calculateEmax() {
-		return null;
+	private Endpoint calculateEmax(Node v) {
+			return null;
 	}
 	
 	/**
