@@ -206,14 +206,6 @@ public class Node {
 	}
 	
 	/**
-	 * 
-	 * @param sets the Endpoint object that represents emax
-	 */
-	public void setEmax(Endpoint emax) {
-		this.emax = emax;
-	}
-
-	/**
 	 * Returns 0 if red. Returns 1 if black.
 	 * @return
 	 */
