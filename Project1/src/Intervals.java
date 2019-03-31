@@ -22,8 +22,8 @@ public class Intervals {
 		Node node2 = new Node(b, -1, this.intervalID); //right endpoint
 		
 		//setting the val for node 1 and 2
-		node1.setVal(rbtree, node1); 
-		node2.setVal(rbtree, node2); 
+//		node1.setVal(rbtree, node1); 
+//		node2.setVal(rbtree, node2); 
 		
 		//every interval should be assigned a new ID
 		this.intervalID++;
@@ -41,7 +41,7 @@ public class Intervals {
 	}
 	
 	public int findPOM(){
-		return getRBTree().getRoot().getMaxVal();	
+		return getRBTree().getRoot().getEmax().getValue();	
 	}
 	
 	public RBTree getRBTree(){
