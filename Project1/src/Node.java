@@ -170,13 +170,9 @@ public class Node {
 				this.emax = v.left.emax;
 			} else if(max2 == v.left.val + v.p) {
 				this.emax = v.endpoint;
-			} else {
+			} else 
 				this.emax = v.right.emax;
 			}
-			
-//			calculateMaxVal(tree, v.left);
-//			calculateMaxVal(tree, v.right);
-		}
 	}
 	
 	/**
