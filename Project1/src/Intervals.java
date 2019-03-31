@@ -25,16 +25,13 @@ public class Intervals {
 		node1.setVal(); 
 		node2.setVal(); 
 		
-		//setting the maxval + emax for node 1 and 2
-		node1.setMaxVal(); 
-		node2.setMaxVal(); 
-		
 		//every interval should be assigned a new ID
 		this.intervalID++;
 		
 		//adding nodes into RBTree
 		rbtree.RBInsert(node1);
 		rbtree.RBInsert(node2);
+		rbtree.updateNode(rbtree.getRoot());
 
 	}
 	

@@ -213,9 +213,6 @@ public class Node {
 		this.emax = emax;
 	}
 
-	private Endpoint calculateEmax(Node v) {
-			return null;
-	}
 	/**
 	 * Returns 0 if red. Returns 1 if black.
 	 * @return

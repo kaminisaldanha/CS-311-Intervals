@@ -143,6 +143,7 @@ public class RBTree {
 					insert.getParent().getParent().setColor(0); //case 1
 					insert = insert.getParent().getParent(); //case 1
 				} else {
+					
 					if(insert == insert.getParent().getRight()) {
 						insert = insert.getParent(); //case 2
 						LeftRotate(insert); //case 2
@@ -202,7 +203,6 @@ public class RBTree {
 		
 		y.setLeft(x);
 		x.setParent(y);
-		nodeValueUpdate(x);
 		
 	}
 	
@@ -231,7 +231,6 @@ public class RBTree {
 		
 		y.setRight(x);
 		x.setParent(y);
-		nodeValueUpdate(x);
 	}
 
 	/**
@@ -386,38 +385,50 @@ public class RBTree {
 		v.setParent(n.getParent());
 	}
 	
-	/**
-	 * 
-	 * @param x
-	 */
-	private void nodeValueUpdate(Node x) 
-	{
-		if(x == this.getNILNode()) 
-		{
-			x.setVal();
-			x.setMaxVal();
-			x.setEmax(this.getNILNode().getEmax());
-		} else {
-			x.setVal();
-			//x.setMaxVal(x); READ-ME: meghna can you fix this?
-			if(x.getLeft().getEmax() != this.getNILNode().getEmax() && x.getMaxVal() == x.getLeft().getMaxVal()) 
-			{
-				x.setEmax(x.getLeft().getEmax());
-			}
-			else if(x.getMaxVal() == (x.getLeft().getVal() + x.getP()))
-			{
-				x.setEmax(x.getEndpoint());
-			} 
-			else if (x.getRight().getEmax() != this.getNILNode().getEmax() && x.getMaxVal() == (x.getLeft().getVal() + x.getP() + x.getRight().getMaxVal())) 
-			{
-				x.setEmax(x.getRight().getEmax());
-			}
-			else 
-			{
-				x.setEmax(this.getNILNode().getEndpoint());
-			}
-			nodeValueUpdate(x.getParent());
+	public void updateNode(Node node) {
+		
+		if(node == null) {return;}
+		else {
+			node.setVal();
+			node.setMaxVal();
+			updateNode(node.getLeft());
+			updateNode(node.getRight());
 		}
 	}
+	
+	
+//	/**
+//	 * 
+//	 * @param x
+//	 */
+//	private void nodeValueUpdate(Node x) 
+//	{
+//		if(x == this.getNILNode()) 
+//		{
+//			x.setVal();
+//			x.setMaxVal();
+//			x.setEmax(this.getNILNode().getEmax());
+//		} else {
+//			x.setVal();
+//			//x.setMaxVal(x); READ-ME: meghna can you fix this?
+//			if(x.getLeft().getEmax() != this.getNILNode().getEmax() && x.getMaxVal() == x.getLeft().getMaxVal()) 
+//			{
+//				x.setEmax(x.getLeft().getEmax());
+//			}
+//			else if(x.getMaxVal() == (x.getLeft().getVal() + x.getP()))
+//			{
+//				x.setEmax(x.getEndpoint());
+//			} 
+//			else if (x.getRight().getEmax() != this.getNILNode().getEmax() && x.getMaxVal() == (x.getLeft().getVal() + x.getP() + x.getRight().getMaxVal())) 
+//			{
+//				x.setEmax(x.getRight().getEmax());
+//			}
+//			else 
+//			{
+//				x.setEmax(this.getNILNode().getEndpoint());
+//			}
+//			nodeValueUpdate(x.getParent());
+//		}
+//	}
 
 }
