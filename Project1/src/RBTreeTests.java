@@ -15,12 +15,18 @@ public class RBTreeTests {
 
     public void initialize() {
         tree = new RBTree();
-        node1 = new Node(new Endpoint(1, 1));
-        node2 = new Node(new Endpoint(2, 1));
-        node3 = new Node(new Endpoint(3, 1));
-        node4 = new Node(new Endpoint(4, 1));
-        node5 = new Node(new Endpoint(5, 1));
-        node6 = new Node(new Endpoint(6, 1));
+        node1 = new Node();
+        node1.setEndpoint(new Endpoint(1,1));
+        	node2 = new Node();
+        	node2.setEndpoint(new Endpoint(2,1));
+        	node3 = new Node();
+        	node3.setEndpoint(new Endpoint(3,1));
+        	node4 = new Node();
+        	node3.setEndpoint(new Endpoint(4,1));
+        	node5 = new Node();
+        	node5.setEndpoint(new Endpoint(5,1));
+        	node6 = new Node();
+        	node6.setEndpoint(new Endpoint(6,1));
     }
 
 
