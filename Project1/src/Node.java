@@ -13,7 +13,18 @@ public class Node {
 	private int red = 0;
 	
 	public Node(){
+		this.parent = null;
+        this.left = null;
+        this.right = null;
+        this.key = -1;
+        this.p = 0;
+        this.val = 0;
+        this.maxval = 0;
+        this.endpoint = null;
+        this.emax = null;
+        this.color = 0;
 	}
+
 	
 	/**
 	 * Returns the parent of this node.
@@ -173,7 +184,6 @@ public class Node {
 			calculateMaxVal(rb, v.right);
 			
 		}
-	
 	}
 	
 	/**
@@ -213,7 +223,6 @@ public class Node {
 	private Endpoint calculateEmax(Node v) {
 			return null;
 	}
-
 	/**
 	 * Returns 0 if red. Returns 1 if black.
 	 * @return
