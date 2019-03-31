@@ -28,9 +28,9 @@ public class NodeTest {
     
     @Test
     public void testTreeSetUp() {
-    		
     		assertEquals(this.rb.getRoot().getKey(), 4);
-    	
+    		assertEquals(this.rb.getRoot().getLeft().getKey(), 1);
+    		assertEquals(this.rb.getRoot().getRight().getKey(), 9);
     }
     
     

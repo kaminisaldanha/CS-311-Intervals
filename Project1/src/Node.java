@@ -148,13 +148,13 @@ public class Node {
 	 * 
 	 * @param sets the maxval of the node as described in this assignment.
 	 */
-	public void setMaxVal() {
-		calculateMaxVal(this);
+	public void setMaxVal(RBTree tree) {
+		calculateMaxVal(tree, this);
 	}
 	
-	private void calculateMaxVal(Node v) {
+	private void calculateMaxVal(RBTree tree, Node v) {
 		
-		if(v == null) {
+		if(v == null || v == tree.getNILNode()) {
 			v.maxval = 0;
 		} else {
 			
@@ -174,8 +174,8 @@ public class Node {
 				this.emax = v.right.emax;
 			}
 			
-			calculateMaxVal(v.left);
-			calculateMaxVal(v.right);
+			calculateMaxVal(tree, v.left);
+			calculateMaxVal(tree, v.right);
 		}
 	}
 	

@@ -31,7 +31,8 @@ public class Intervals {
 		//adding nodes into RBTree
 		rbtree.RBInsert(node1);
 		rbtree.RBInsert(node2);
-		rbtree.updateNode(rbtree.getRoot());
+		//updating val, maxVal, emax for all nodes
+		rbtree.updateNode(rbtree, rbtree.getRoot());
 
 	}
 	
