@@ -102,6 +102,65 @@ public class RBTreeTests {
     	
     }
     
-	
+    @Test
+	public void testHeight() {
+		Intervals intervals = new Intervals();
+
+		//initial
+		tree = intervals.getRBTree();
+		assertEquals(0, tree.getHeight());
+
+		// first insertion
+		intervals.intervalInsert(0, 4); 
+		tree = intervals.getRBTree();
+		assertEquals(2, tree.getHeight());
+
+		// second insertion
+		intervals.intervalInsert(1, 6); 
+		tree = intervals.getRBTree();
+		assertEquals(3, tree.getHeight());
+
+		// third insertion
+		intervals.intervalInsert(3, 9);
+		tree = intervals.getRBTree();
+		assertEquals(4, tree.getHeight());
+
+		// fourth insertion
+		intervals.intervalInsert(7, 11);
+		tree = intervals.getRBTree();
+		assertEquals(4, tree.getHeight());
+
+	}
+    
+    @Test
+	public void testSize() {
+		Intervals intervals = new Intervals();
+
+		// initial 
+		tree = intervals.getRBTree();
+		assertEquals(0, tree.getSize());
+
+		// first insertion
+		intervals.intervalInsert(0, 4); 
+		tree = intervals.getRBTree();
+		assertEquals(2, tree.getSize());
+
+		// second insertion
+		intervals.intervalInsert(1, 6); 
+		tree = intervals.getRBTree();
+		assertEquals(4, tree.getSize());
+
+		// third insertion
+		intervals.intervalInsert(3, 9);
+		tree = intervals.getRBTree();
+		assertEquals(6, tree.getSize());
+
+		// fourth insertion
+		intervals.intervalInsert(7, 11);
+		tree = intervals.getRBTree();
+		assertEquals(8, tree.getSize());
+	}
+
+
 
 }
