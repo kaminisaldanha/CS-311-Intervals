@@ -53,6 +53,22 @@ public class NodeTest {
     		assertEquals(this.rb.getRoot().getRight().getKey(), 7);
     		assertEquals(this.interval.findPOM(), 3);
     }
+    
+    @Test
+    public void testNodeValCalculation() {
+        // Test left subtree
+        assertEquals(rb.getRoot().getVal(), 0);
+        assertEquals(rb.getRoot().getLeft().getVal(), 3);
+        assertEquals(rb.getRoot().getLeft().getLeft().getVal(), 1);
+        assertEquals(rb.getRoot().getLeft().getRight().getVal(), 1);
+
+        // Test right subtree
+        assertEquals(rb.getRoot().getRight().getVal(), -2);
+        assertEquals(rb.getRoot().getRight().getLeft().getVal(), -1);
+        assertEquals(rb.getRoot().getRight().getRight().getVal(), -2);
+        assertEquals(rb.getRoot().getRight().getRight().getRight().getVal(), -1);
+    }
+    
     @Test
     public void testNodeEmaxCalculation() {
         
@@ -71,6 +87,22 @@ public class NodeTest {
         assertEquals(nilEndpoint, rb.getRoot().getRight().getRight().getRight().getEmax());
     }
     
+    @Test
+    public void testIntervalInsert() {
+        assertEquals(rb.getSize(), 8);
+
+        // Test left subtree
+        assertEquals(rb.getRoot().getKey(), 4);
+        assertEquals(rb.getRoot().getLeft().getKey(), 1);
+        assertEquals(rb.getRoot().getLeft().getLeft().getKey(), 0);
+        assertEquals(rb.getRoot().getLeft().getRight().getKey(), 3);
+
+        // Test right subtree
+        assertEquals(rb.getRoot().getRight().getKey(), 7);
+        assertEquals(rb.getRoot().getRight().getLeft().getKey(), 6);
+        assertEquals(rb.getRoot().getRight().getRight().getKey(), 9);
+        assertEquals(rb.getRoot().getRight().getRight().getRight().getKey(), 11);
+    }
 //    
 //    @Test
 //    public void getParentTest() {
