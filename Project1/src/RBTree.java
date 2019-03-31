@@ -18,10 +18,6 @@ public class RBTree {
 	/**
 	 * The height of the RB Tree
 	 */
-	private int height;
-	/**
-	 * The nil node in the RB Tree
-	 */
 	private Node nil;
 	
 	/**
@@ -40,7 +36,6 @@ public class RBTree {
 
 		//intialize the size and height of tree
 		size = 0;
-		height = 0;
 	}
 	
 	/**
@@ -82,18 +77,20 @@ public class RBTree {
 	 * @return
 	 */
 	public int getHeight() { //READ-ME: not sure if this is meant to return black height.
-		return this.height;
+		return getHeight(root);
 	}
 	
-	private int findHeight(Node root) {
-		
-		if(root == null) {return 0;}
-		
-		int leftHeight = findHeight(root.getLeft());
-		int rightHeight = findHeight(root.getRight());
-		
-		return Math.max(leftHeight, rightHeight) + 1;
+	public int getHeight(Node node) {
+		if (node == this.nil) {return 0;}
+
+		// find the height of each subtree
+		int left = getHeight(node.getLeft());
+		int right = getHeight(node.getRight());
+
+		return Math.max(left, right) + 1;
 	}
+
+	
 	
 	/**
 	 * To insert a node into the red black tree
@@ -129,7 +126,6 @@ public class RBTree {
 		RBInsertFixup(insert);
 			
 		size++;
-		//this.height = findHeight(root); READ-ME: fix this
 	}
 	
 	/**
@@ -139,41 +135,47 @@ public class RBTree {
 	private void RBInsertFixup(Node insert) {
 		
 		while(insert.getParent().getColor() == 0) {
+			
 			if(insert.getParent() == insert.getParent().getParent().getLeft()) {
 				Node y = insert.getParent().getParent().getRight();
 				if(y.getColor() == 0) {
-					insert.getParent().setColor(1);
-					y.getParent().setColor(1);
-					insert.getParent().getParent().setColor(0);
-					insert = insert.getParent().getParent();
-				} else if(insert == insert.getParent().getRight()) {
-					insert = insert.getParent();
-					LeftRotate(insert);
-				}
-				insert.getParent().setColor(1);
-				insert.getParent().getParent().setColor(0);
-				RightRotate(insert.getParent().getParent());
-			} else {
-				Node y = insert.getParent().getParent().getLeft();
-				if(y.getColor() == 0) {
-					insert.getParent().setColor(1);
-					y.getParent().setColor(1);
-					insert.getParent().getParent().setColor(0);
-					insert = insert.getParent().getParent();
-				} else if(insert == insert.getParent().getLeft()) {
-					insert = insert.getParent();
-					RightRotate(insert);
+					insert.getParent().setColor(1); //case 1
+					y.setColor(1); //case 1
+					insert.getParent().getParent().setColor(0); //case 1
+					insert = insert.getParent().getParent(); //case 1
+				} else {
+					if(insert == insert.getParent().getRight()) {
+						insert = insert.getParent(); //case 2
+						LeftRotate(insert); //case 2
+					}
+		
+					insert.getParent().setColor(1); //case 3
+					insert.getParent().getParent().setColor(0); //case 3
+					RightRotate(insert.getParent().getParent()); //case 3
+					
 				}
 				
-				insert.getParent().setColor(1);
-				insert.getParent().getParent().setColor(0);
-				LeftRotate(insert.getParent().getParent());
+			} else {
+				Node y = insert.getParent().getParent().getLeft(); 
+				if(y.getColor() == 0) {
+					insert.getParent().setColor(1); //case 1
+					y.setColor(1); //case 1
+					insert.getParent().getParent().setColor(0); //case 1
+					insert = insert.getParent().getParent(); //case 1
+				} else {
+					if(insert == insert.getParent().getLeft()) {
+						insert = insert.getParent(); //case 2
+						RightRotate(insert); //case 2
+					}
+					
+					insert.getParent().setColor(1); //case 3
+					insert.getParent().getParent().setColor(0); //case 3
+					LeftRotate(insert.getParent().getParent()); //case 3	
+				}
 			}
 		}
 		
 		this.root.setColor(1);
-		
-		
 	}
 	
 	/**
@@ -273,7 +275,6 @@ public class RBTree {
 		}
 		
 		size--;
-		this.height = findHeight(root);
 	}
 	
 	/**
