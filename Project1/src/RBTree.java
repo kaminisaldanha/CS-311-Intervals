@@ -361,6 +361,7 @@ public class RBTree {
 				}
 			}
 		}
+		
 		z.setColor(1);
 	}
 	
@@ -390,46 +391,10 @@ public class RBTree {
 		
 		if(node == tree.getNILNode()) {return;}
 		else {
-			node.setVal(this, node);
-			node.setMaxVal(this);
 			updateNode(tree, node.getLeft());
 			updateNode(tree, node.getRight());
+			node.setVal(this, node);
+			node.setMaxVal(this);
 		}
 	}
-	
-	
-//	/**
-//	 * 
-//	 * @param x
-//	 */
-//	private void nodeValueUpdate(Node x) 
-//	{
-//		if(x == this.getNILNode()) 
-//		{
-//			x.setVal();
-//			x.setMaxVal();
-//			x.setEmax(this.getNILNode().getEmax());
-//		} else {
-//			x.setVal();
-//			//x.setMaxVal(x); READ-ME: meghna can you fix this?
-//			if(x.getLeft().getEmax() != this.getNILNode().getEmax() && x.getMaxVal() == x.getLeft().getMaxVal()) 
-//			{
-//				x.setEmax(x.getLeft().getEmax());
-//			}
-//			else if(x.getMaxVal() == (x.getLeft().getVal() + x.getP()))
-//			{
-//				x.setEmax(x.getEndpoint());
-//			} 
-//			else if (x.getRight().getEmax() != this.getNILNode().getEmax() && x.getMaxVal() == (x.getLeft().getVal() + x.getP() + x.getRight().getMaxVal())) 
-//			{
-//				x.setEmax(x.getRight().getEmax());
-//			}
-//			else 
-//			{
-//				x.setEmax(this.getNILNode().getEndpoint());
-//			}
-//			nodeValueUpdate(x.getParent());
-//		}
-//	}
-
 }

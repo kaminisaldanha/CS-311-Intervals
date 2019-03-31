@@ -41,8 +41,7 @@ public class Intervals {
 	}
 	
 	public int findPOM(){
-		
-		return getRBTree().getRoot().getEndpoint().getValue();	
+		return getRBTree().getRoot().getMaxVal();	
 	}
 	
 	public RBTree getRBTree(){

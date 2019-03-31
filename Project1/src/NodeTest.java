@@ -30,7 +30,7 @@ public class NodeTest {
     public void testTreeSetUp() {
     		assertEquals(this.rb.getRoot().getKey(), 4);
     		assertEquals(this.rb.getRoot().getLeft().getKey(), 1);
-    		assertEquals(this.rb.getRoot().getRight().getKey(), 9);
+    		assertEquals(this.rb.getRoot().getRight().getKey(), 7);
     }
     
     

@@ -174,8 +174,8 @@ public class Node {
 				this.emax = v.right.emax;
 			}
 			
-			calculateMaxVal(tree, v.left);
-			calculateMaxVal(tree, v.right);
+//			calculateMaxVal(tree, v.left);
+//			calculateMaxVal(tree, v.right);
 		}
 	}
 	
