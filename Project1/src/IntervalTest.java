@@ -9,7 +9,7 @@ public class IntervalTest {
     public void testFindPOM() { //Doesn't work
 		Intervals intervals = new Intervals();
 
-        // Simple test
+		// Simple test
         intervals.intervalInsert(1, 3);
         intervals.intervalInsert(2, 4);
         assertEquals(2, intervals.findPOM());
@@ -17,11 +17,14 @@ public class IntervalTest {
         intervals.intervalInsert(5, 11);
         intervals.intervalInsert(6, 8);
         assertEquals(6, intervals.findPOM());
-        
+
         // Test from example
-        intervals = new Intervals();
-        ExamplefromAssignment();
-        assertEquals(3, intervals.findPOM());
+		Intervals interval = new Intervals();
+		interval.intervalInsert(0, 4);
+		interval.intervalInsert(1, 6);
+		interval.intervalInsert(3, 9);
+		interval.intervalInsert(7, 11);
+		assertEquals(3, interval.findPOM());
 	}
 	
 	private void ExamplefromAssignment(){
@@ -33,5 +36,7 @@ public class IntervalTest {
 			interval.intervalInsert(points[i][0], points[i][1]);
 		}
 	}
+	
+	
 
 }
