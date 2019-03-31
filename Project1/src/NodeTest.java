@@ -106,12 +106,12 @@ public class NodeTest {
     	
     }
     
-//    @Test
-//    public void getEmax(){
-//    	assertEquals(this.rb.getRoot().getEmax(), 0);
-//		assertEquals(this.rb.getRoot().getLeft().getEmax(), 3);
-//		assertEquals(this.rb.getRoot().getRight().getEmax(), -2);
-//    }
+    @Test
+    public void getEmax(){
+    	assertEquals(this.rb.getRoot().getEmax(), 0);
+		assertEquals(this.rb.getRoot().getLeft().getEmax(), 3);
+		assertEquals(this.rb.getRoot().getRight().getEmax(), -2);
+    }
     
     @Test
     public void getColor(){
