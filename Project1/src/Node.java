@@ -114,22 +114,22 @@ public class Node {
 	 * @param p
 	 * @return
 	 */
-	public void setVal() {
-		this.val = calculateVal(this);
+	public void setVal(RBTree tree, Node node) {
+		this.val = calculateVal(tree, this);
 	}
 	
-	private int calculateVal(Node node) {
+	private int calculateVal(RBTree tree, Node node) {
 		
 		int sum, leftSum, rightSum;
 		
 		//if no node p is 0
-		if(node == null) {
+		if(node == null || node == tree.getNILNode()) {
 			return 0;
 		}
 		
 		//find P's in subtree
-		leftSum = calculateVal(node.left);
-		rightSum = calculateVal(node.right);
+		leftSum = calculateVal(tree, node.left);
+		rightSum = calculateVal(tree, node.right);
 		
 		//add all p's together
 		sum = leftSum + rightSum + node.getP();

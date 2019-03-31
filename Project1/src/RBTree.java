@@ -163,6 +163,7 @@ public class RBTree {
 					insert.getParent().getParent().setColor(0); //case 1
 					insert = insert.getParent().getParent(); //case 1
 				} else {
+					
 					if(insert == insert.getParent().getLeft()) {
 						insert = insert.getParent(); //case 2
 						RightRotate(insert); //case 2
@@ -389,7 +390,7 @@ public class RBTree {
 		
 		if(node == null) {return;}
 		else {
-			node.setVal();
+			node.setVal(this, node);
 			node.setMaxVal();
 			updateNode(node.getLeft());
 			updateNode(node.getRight());
