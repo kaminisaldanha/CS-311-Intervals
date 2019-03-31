@@ -386,14 +386,14 @@ public class RBTree {
 		v.setParent(n.getParent());
 	}
 	
-	public void updateNode(Node node) {
+	public void updateNode(RBTree tree, Node node) {
 		
-		if(node == null) {return;}
+		if(node == tree.getNILNode()) {return;}
 		else {
 			node.setVal(this, node);
-			node.setMaxVal();
-			updateNode(node.getLeft());
-			updateNode(node.getRight());
+			node.setMaxVal(this);
+			updateNode(tree, node.getLeft());
+			updateNode(tree, node.getRight());
 		}
 	}
 	

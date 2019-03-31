@@ -79,6 +79,28 @@ public class RBTreeTests {
 		assertEquals(tree.getRoot().getRight().getColor(), 1);
     }
     
+    @Test
+    public void addTest3() {
+    	
+	    	Node node1 = new Node(0, 0, 0);
+		Node node2 = new Node(4, 0 ,0);
+		Node node3 = new Node(1, 0, 0);
+		Node node4 = new Node(6, 0, 0);
+		Node node5 = new Node(3, 0, 0);
+		Node node6 = new Node(9, 0, 0);
+		Node node7 = new Node(7, 0, 0);
+		Node node8 = new Node(11, 0, 0);
+		
+		tree.RBInsert(node1);
+		tree.RBInsert(node2);
+		tree.RBInsert(node3);
+		tree.RBInsert(node4);
+		tree.RBInsert(node5);
+		tree.RBInsert(node6);
+		tree.RBInsert(node7);
+		tree.RBInsert(node8);
+    	
+    }
     
 	
 
