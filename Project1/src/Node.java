@@ -7,19 +7,18 @@
   
 public class Node {
 	
-	private Node right, left, parent; 
+	private Node right, left, parent;
 	private int key, p, val, maxval, color;
 	private Endpoint endpoint, emax;
-	private RBTree tree;
 	
-	public Node(int key, int p, int ID){
+	public Node(int key, int p, int ID) {
 		this.parent = null;
         this.left = null;
         this.right = null;
         this.key = key;
         this.p = p;
         this.endpoint = new Endpoint(key, p);
-        this.emax = null;
+        this.emax = null; 
 	}
 
 	/**
@@ -115,17 +114,16 @@ public class Node {
 	 * @param p
 	 * @return
 	 */
-	public void setVal(Node node) {
-		this.val = calculateVal(node);
+	public void setVal() {
+		this.val = calculateVal(this);
 	}
 	
-	//READ-ME: test this
 	private int calculateVal(Node node) {
 		
 		int sum, leftSum, rightSum;
 		
 		//if no node p is 0
-		if(node == tree.getNILNode()) {
+		if(node == null) {
 			return 0;
 		}
 		
@@ -150,13 +148,13 @@ public class Node {
 	 * 
 	 * @param sets the maxval of the node as described in this assignment.
 	 */
-	public void setMaxVal(int val) {
-		this.maxval = val;
+	public void setMaxVal() {
+		calculateMaxVal(this);
 	}
 	
-	public void calculateMaxVal(Node v) {
+	private void calculateMaxVal(Node v) {
 		
-		if(v == tree.getNILNode()) {
+		if(v == null) {
 			v.maxval = 0;
 		} else {
 			

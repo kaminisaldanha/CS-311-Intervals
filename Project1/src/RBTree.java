@@ -394,13 +394,11 @@ public class RBTree {
 	{
 		if(x == this.getNILNode()) 
 		{
-			x.setVal(null);
-			x.setMaxVal(0);
+			x.setVal();
+			x.setMaxVal();
 			x.setEmax(this.getNILNode().getEmax());
-		}
-		else 
-		{
-			x.setVal(x);
+		} else {
+			x.setVal();
 			//x.setMaxVal(x); READ-ME: meghna can you fix this?
 			if(x.getLeft().getEmax() != this.getNILNode().getEmax() && x.getMaxVal() == x.getLeft().getMaxVal()) 
 			{

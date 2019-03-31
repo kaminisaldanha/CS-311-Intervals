@@ -2,7 +2,7 @@
 public class Intervals {
 
 	private int intervalID;
-	private RBTree rbtree;
+	public RBTree rbtree;
 	
 	public Intervals(){
 		this.intervalID = 1;
@@ -21,12 +21,21 @@ public class Intervals {
 		Node node1 = new Node(a, 1, this.intervalID); //left endpoint
 		Node node2 = new Node(b, -1, this.intervalID); //right endpoint
 		
+		//setting the val for node 1 and 2
+		node1.setVal(); 
+		node2.setVal(); 
+		
+		//setting the maxval + emax for node 1 and 2
+		node1.setMaxVal(); 
+		node2.setMaxVal(); 
+		
 		//every interval should be assigned a new ID
 		this.intervalID++;
 		
 		//adding nodes into RBTree
 		rbtree.RBInsert(node1);
 		rbtree.RBInsert(node2);
+
 	}
 	
 	public boolean intervalDelete(int intervalID){
