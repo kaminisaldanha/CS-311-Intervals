@@ -24,26 +24,19 @@ public class RBTreeTests {
 		assertEquals(tree.getSize(), 0);
     }
     
-	/**
-	 * Checks if the tree is set up properly 
-	 */
-	@Test
-	public void rootSetupCheck() {
-		//creating the tree
-		RBTree rbtree = new RBTree();
-		//checks that the color of the root is black
-		assertEquals(rbtree.getRoot().getColor(), 1);
-		//checks that the size of the tree is initially 1
-		assertEquals(rbtree.getSize(), 1);
-		//checks that the height of the tree is initially 0
-		assertEquals(rbtree.getHeight(), 0);
-	}
-	
-	@Test
-	public void addNodeTest1() {
+    @Test
+	public void addTest1() {
 		
-		
-		
+    		Node node1 = new Node(4, 0, 0);
+    		Node node2 = new Node(5, 0 ,0);
+    		
+    		tree.RBInsert(node1);
+    		tree.RBInsert(node2);
+    		
+    		assertEquals(tree.getSize(), 2);
+    		assertEquals(tree.getRoot().getKey(), 4);
+//    		assertEquals(tree.getRoot().getColor(), 1);
+    	
 	}
 	
 
