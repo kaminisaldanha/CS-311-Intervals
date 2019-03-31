@@ -30,7 +30,7 @@ public class RBTree {
 	public RBTree() {
 
 		//setting nil node to be black
-		nil = new Node();
+		nil = new Node(0, 0, 0);
 		nil.setColor(1);
 		
 		root = nil; //to start with
@@ -129,7 +129,7 @@ public class RBTree {
 		RBInsertFixup(insert);
 			
 		size++;
-		this.height = findHeight(root);
+		//this.height = findHeight(root); READ-ME: fix this
 	}
 	
 	/**
@@ -413,7 +413,7 @@ public class RBTree {
 		else 
 		{
 			x.setVal(x);
-			x.setMaxVal(x);
+			//x.setMaxVal(x); READ-ME: meghna can you fix this?
 			if(x.getLeft().getEmax() != this.getNILNode().getEmax() && x.getMaxVal() == x.getLeft().getMaxVal()) 
 			{
 				x.setEmax(x.getLeft().getEmax());

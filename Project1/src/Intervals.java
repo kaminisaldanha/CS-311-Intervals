@@ -5,7 +5,7 @@ public class Intervals {
 	private RBTree rbtree;
 	
 	public Intervals(){
-		this.intervalID = 0;
+		this.intervalID = 1;
 		this.rbtree = new RBTree();
 	}
 	
@@ -17,13 +17,9 @@ public class Intervals {
 	 */
 	public void intervalInsert(int a, int b){
 		
-		Node node1 = new Node();
-		node1.setKey(a);
-		node1.setP(1); //it is the left endpoint
-		
-		Node node2 = new Node();
-		node2.setKey(b);
-		node2.setP(-1); //it is the right endpoint
+		//intializing node
+		Node node1 = new Node(a, 1, this.intervalID); //left endpoint
+		Node node2 = new Node(b, -1, this.intervalID); //right endpoint
 		
 		//every interval should be assigned a new ID
 		this.intervalID++;

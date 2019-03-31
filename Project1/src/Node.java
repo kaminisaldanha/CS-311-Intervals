@@ -10,18 +10,17 @@ public class Node {
 	private Node right, left, parent; 
 	private int key, p, val, maxval, color;
 	private Endpoint endpoint, emax;
-	private int red = 0;
 	
-	public Node(){
+	public Node(int key, int p, int ID){
 		this.parent = null;
         this.left = null;
         this.right = null;
-        this.key = -1;
-        this.p = 0;
-        this.val = 0;
-        this.maxval = 0;
-        this.endpoint = null;
-        this.emax = null;
+        this.key = key;
+        this.p = p;
+        this.val = this.calculateVal(this);
+        this.calculateMaxVal(this); 
+        this.endpoint = new Endpoint(key, p);
+        this.emax = this.calculateEmax(this);
         this.color = 0;
 	}
 
@@ -158,9 +157,12 @@ public class Node {
 		this.maxval = val;
 	}
 	
-	public void calculateMaxVal(RBTree rb, Node v) {
+	public void calculateMaxVal(Node v) {
 		
-		if(v == rb.getNILNode()) {
+		Node nil = new Node(0, 0, 0);
+		nil.setColor(1);
+		
+		if(v == nil) {
 			v.maxval = 0;
 		} else {
 			
@@ -180,8 +182,8 @@ public class Node {
 				this.emax = v.right.emax;
 			}
 			
-			calculateMaxVal(rb, v.left);
-			calculateMaxVal(rb, v.right);
+			calculateMaxVal(v.left);
+			calculateMaxVal(v.right);
 			
 		}
 	}
@@ -228,7 +230,7 @@ public class Node {
 	 * @return
 	 */
 	public int getColor(){
-		if(color == red){
+		if(color == 0){
 			return 0;
 		}
 		else{

@@ -1,52 +1,27 @@
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class RBTreeTests {
 	
 	// Instance variables
     private RBTree tree;
-    private Node node1;
-    private Node node2;
-    private Node node3;
-    private Node node4;
-    private Node node5;
-    private Node node6;
 
+    @Before
     public void initialize() {
-        tree = new RBTree();
-        node1 = new Node();
-        node1.setEndpoint(new Endpoint(1,1));
-        	node2 = new Node();
-        	node2.setEndpoint(new Endpoint(2,1));
-        	node3 = new Node();
-        	node3.setEndpoint(new Endpoint(3,1));
-        	node4 = new Node();
-        	node3.setEndpoint(new Endpoint(4,1));
-        	node5 = new Node();
-        	node5.setEndpoint(new Endpoint(5,1));
-        	node6 = new Node();
-        	node6.setEndpoint(new Endpoint(6,1));
+        tree = new RBTree();       
     }
 
 
+    /**
+     * Initially, there should be only nil nodes. Height and size are 0.
+     */
     @Test
-    public void testGetRoot() {
-
-        
-		// Root should initially be NIL
-
-        // Insert node, which is new root
-        tree.RBInsert(node1);
-        assertEquals(tree.getRoot().getKey(), 1);
-
-        // New insert keeps the same root as before
-        tree.RBInsert(node2);
-        assertEquals(tree.getRoot().getKey(), 1);
-
-        // Rotation results in new root
-        tree.RBInsert(node3);
-        assertEquals(tree.getRoot().getKey(), 2);
+    public void rootTest() {
+		assertEquals(tree.getRoot(), tree.getNILNode());
+		assertEquals(tree.getHeight(), 0);
+		assertEquals(tree.getSize(), 0);
     }
     
 	/**
