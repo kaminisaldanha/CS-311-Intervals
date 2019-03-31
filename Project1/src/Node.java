@@ -22,7 +22,20 @@ public class Node {
         this.maxval = 0;
         this.endpoint = null;
         this.emax = null;
-        this.color = 1;
+        this.color = 0;
+	}
+	
+	public Node(Endpoint e){
+		this.parent = null;
+        this.left = null;
+        this.right = null;
+        this.key = -1;
+        this.p = 0;
+        this.val = 0;
+        this.maxval = 0;
+        this.endpoint = null;
+        this.emax = null;
+        this.color = 0;
 	}
 	
 	/**
