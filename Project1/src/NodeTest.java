@@ -53,7 +53,23 @@ public class NodeTest {
     		assertEquals(this.rb.getRoot().getRight().getKey(), 7);
     		assertEquals(this.interval.findPOM(), 3);
     }
-    
+    @Test
+    public void testNodeEmaxCalculation() {
+        
+        Endpoint nilEndpoint = rb.getNILNode().getEndpoint();
+
+        // Test left subtree
+        assertEquals(3, rb.getRoot().getEmax().getValue());
+        assertEquals(3, rb.getRoot().getLeft().getEmax().getValue());
+        assertEquals(0, rb.getRoot().getLeft().getLeft().getEmax().getValue());
+        assertEquals(3, rb.getRoot().getLeft().getRight().getEmax().getValue());
+
+        // Test right subtree
+        assertEquals(0, rb.getRoot().getRight().getEmax().getValue());
+        assertEquals(nilEndpoint, rb.getRoot().getRight().getLeft().getEmax());
+        assertEquals(nilEndpoint, rb.getRoot().getRight().getRight().getEmax());
+        assertEquals(nilEndpoint, rb.getRoot().getRight().getRight().getRight().getEmax());
+    }
     
 //    
 //    @Test
