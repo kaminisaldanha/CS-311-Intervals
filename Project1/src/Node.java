@@ -18,7 +18,7 @@ public class Node {
         this.key = key;
         this.p = p;
         this.endpoint = new Endpoint(key, p);
-        this.emax = null; 
+        this.emax = null;
 	}
 
 	/**
@@ -156,6 +156,7 @@ public class Node {
 		
 		if(v == null || v == tree.getNILNode()) {
 			v.maxval = 0;
+			v.setEmax(tree.getNILNode().getEndpoint());
 		} else {
 			
 			int case1 = v.left.maxval;
@@ -199,6 +200,10 @@ public class Node {
 	 */
 	public Endpoint getEmax(){
 		return emax;
+	}
+	
+	public void setEmax(Endpoint emax) {
+		this.emax = emax;
 	}
 	
 	/**

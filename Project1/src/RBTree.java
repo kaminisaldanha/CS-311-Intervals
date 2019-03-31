@@ -389,7 +389,10 @@ public class RBTree {
 	
 	public void updateNode(RBTree tree, Node node) {
 		
-		if(node == tree.getNILNode()) {return;}
+		if(node == tree.getNILNode()) {
+			node.setMaxVal(tree);
+			return;
+		}
 		else {
 			updateNode(tree, node.getLeft());
 			updateNode(tree, node.getRight());
