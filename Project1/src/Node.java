@@ -10,6 +10,7 @@ public class Node {
 	private Node right, left, parent; 
 	private int key, p, val, maxval, color;
 	private Endpoint endpoint, emax;
+	private RBTree tree;
 	
 	public Node(int key, int p, int ID){
 		this.parent = null;
@@ -19,11 +20,10 @@ public class Node {
         this.p = p;
         this.val = this.calculateVal(this); 
         this.endpoint = new Endpoint(key, p);
-        this.emax = this.calculateEmax(this);
+        this.emax = null;
         this.color = 0;
 	}
 
-	
 	/**
 	 * Returns the parent of this node.
 	 * @return
@@ -127,7 +127,7 @@ public class Node {
 		int sum, leftSum, rightSum;
 		
 		//if no node p is 0
-		if(node == null) {
+		if(node == tree.getNILNode()) {
 			return 0;
 		}
 		
@@ -158,10 +158,7 @@ public class Node {
 	
 	public void calculateMaxVal(Node v) {
 		
-		Node nil = new Node(0, 0, 0);
-		nil.setColor(1);
-		
-		if(v == nil) {
+		if(v == tree.getNILNode()) {
 			v.maxval = 0;
 		} else {
 			
@@ -183,7 +180,6 @@ public class Node {
 			
 			calculateMaxVal(v.left);
 			calculateMaxVal(v.right);
-			
 		}
 	}
 	

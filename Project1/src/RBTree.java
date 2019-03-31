@@ -136,55 +136,43 @@ public class RBTree {
 	 * 
 	 * @param z
 	 */
-	private void RBInsertFixup(Node z) {
+	private void RBInsertFixup(Node insert) {
 		
-		Node y;
-		
-		while(z.getParent().getColor() == 0) {
-			if(z.getParent() == z.getParent().getParent().getLeft()) {
-				
-				y = z.getParent().getParent().getRight();
-				
+		while(insert.getParent().getColor() == 0) {
+			if(insert.getParent() == insert.getParent().getParent().getLeft()) {
+				Node y = insert.getParent().getParent().getRight();
 				if(y.getColor() == 0) {
-					
-					z.getParent().setColor(1);
-					y.setColor(1);
-					z.getParent().getParent().setColor(0);
-					z = z.getParent().getParent();
-					
-				} else {
-					
-					if(z == z.getParent().getRight()) {
-						z = z.getParent();
-						LeftRotate(z);
-					}
-					
-					z.getParent().setColor(1);
-					z.getParent().getParent().setColor(0);
-					RightRotate(z.getParent().getParent());
-					
+					insert.getParent().setColor(1);
+					y.getParent().setColor(1);
+					insert.getParent().getParent().setColor(0);
+					insert = insert.getParent().getParent();
+				} else if(insert == insert.getParent().getRight()) {
+					insert = insert.getParent();
+					LeftRotate(insert);
 				}
+				insert.getParent().setColor(1);
+				insert.getParent().getParent().setColor(0);
+				RightRotate(insert.getParent().getParent());
 			} else {
-					
-				y = z.getParent().getParent().getLeft();
+				Node y = insert.getParent().getParent().getLeft();
 				if(y.getColor() == 0) {
-					z.getParent().setColor(1);
-					y.setColor(1);
-					z.getParent().getParent().setColor(0);
-					z = z.getParent().getParent();
-				} else {
-					if(z == z.getParent().getLeft()) {
-						z = z.getParent();
-						LeftRotate(z);
-					}
-					z.getParent().setColor(1);
-					z.getParent().getParent().setColor(0);
-					RightRotate(z.getParent().getParent());
+					insert.getParent().setColor(1);
+					y.getParent().setColor(1);
+					insert.getParent().getParent().setColor(0);
+					insert = insert.getParent().getParent();
+				} else if(insert == insert.getParent().getLeft()) {
+					insert = insert.getParent();
+					RightRotate(insert);
 				}
+				
+				insert.getParent().setColor(1);
+				insert.getParent().getParent().setColor(0);
+				LeftRotate(insert.getParent().getParent());
 			}
 		}
 		
-		root.setColor(0);
+		this.root.setColor(1);
+		
 		
 	}
 	
