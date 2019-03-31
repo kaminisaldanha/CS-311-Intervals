@@ -94,36 +94,36 @@ public class RBTree {
 	
 	/**
 	 * To insert a node into the red black tree
-	 * @param z
+	 * @param insert
 	 */
-	public void RBInsert(Node z) {
+	public void RBInsert(Node insert) {
 		
 		Node y = this.nil;
 		Node x = this.root;
 		
 		while(x != this.nil) {
 			y = x;
-			if(z.getKey() < x.getKey()) {
+			if(insert.getKey() < x.getKey()) {
 				x = x.getLeft();
 			} else {
 				x = x.getRight();
 			}
 		}
 			
-		z.setParent(y);
+		insert.setParent(y);
 		
 		if(y == this.nil) {
-			root = z;
-		} else if(z.getKey() < y.getKey()) {
-			y.setLeft(z);
+			root = insert;
+		} else if(insert.getKey() < y.getKey()) {
+			y.setLeft(insert);
 		} else {
-			y.setRight(z);
+			y.setRight(insert);
 		}
 		
-		z.setLeft(this.nil);
-		z.setRight(this.nil);
-		z.setColor(0);
-		RBInsertFixup(z);
+		insert.setLeft(this.nil);
+		insert.setRight(this.nil);
+		insert.setColor(0);
+		RBInsertFixup(insert);
 			
 		size++;
 		this.height = findHeight(root);
@@ -164,7 +164,7 @@ public class RBTree {
 			} else {
 					
 				y = z.getParent().getParent().getLeft();
-				if(y != null && y.getColor() == 0) {
+				if(y.getColor() == 0) {
 					z.getParent().setColor(1);
 					y.setColor(1);
 					z.getParent().getParent().setColor(0);
@@ -406,7 +406,7 @@ public class RBTree {
 		if(x == this.getNILNode()) 
 		{
 			x.setVal(null);
-			x.setMaxVal(null);
+			x.setMaxVal(0);
 			x.setEmax(this.getNILNode().getEmax());
 		}
 		else 

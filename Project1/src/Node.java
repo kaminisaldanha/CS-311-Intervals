@@ -13,9 +13,6 @@ public class Node {
 	private int red = 0;
 	
 	public Node(){
-		this.right = null;
-		this.left = null;
-		this.parent = null;
 	}
 	
 	/**
@@ -146,25 +143,37 @@ public class Node {
 	 * 
 	 * @param sets the maxval of the node as described in this assignment.
 	 */
-	public void setMaxVal(Node node) {
-		this.maxval = calculateMaxVal(node);
+	public void setMaxVal(int val) {
+		this.maxval = val;
 	}
 	
-	private int calculateMaxVal(Node v) {
+	public void calculateMaxVal(RBTree rb, Node v) {
 		
-		int max, case1, case2, case3;
-		
-		if(v == null) {
-			return 0;
+		if(v == rb.getNILNode()) {
+			v.maxval = 0;
+		} else {
+			
+			int case1 = v.left.maxval;
+			int case2 = v.left.val + v.p;
+			int case3 = v.left.val + v.p + v.right.maxval;
+			
+			int max1 = Math.max(case1, case2);
+			int max2 = Math.max(max1, case3);
+			v.maxval = max2;
+			
+			if(max2 == v.left.maxval) {
+				this.emax = v.left.emax;
+			} else if(max2 == v.left.val + v.p) {
+				this.emax = v.endpoint;
+			} else {
+				this.emax = v.right.emax;
+			}
+			
+			calculateMaxVal(rb, v.left);
+			calculateMaxVal(rb, v.right);
+			
 		}
-		
-		case1 = calculateMaxVal(v.left);
-		case2 = calculateVal(v.left) + v.getP();
-		case3 = calculateVal(v.left) + v.getP() + calculateMaxVal(v.right);
-		
-		max = Math.max(case1, Math.max(case2, case3));
-		return max;
-
+	
 	}
 	
 	/**
@@ -200,11 +209,11 @@ public class Node {
 	public void setEmax(Endpoint emax) {
 		this.emax = emax;
 	}
-	
+
 	private Endpoint calculateEmax(Node v) {
 			return null;
 	}
-	
+
 	/**
 	 * Returns 0 if red. Returns 1 if black.
 	 * @return
