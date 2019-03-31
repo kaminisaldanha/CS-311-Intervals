@@ -27,6 +27,15 @@ public class IntervalTest {
 		assertEquals(3, interval.findPOM());
 	}
 	
+	@Test
+    public void testGetRBTree() {
+		Intervals intervals = new Intervals();
+
+        // Should return an empty tree
+        assertEquals(intervals.getRBTree().getSize(), 0);
+       // assertTrue(intervals.getRBTree(), nil);
+    }
+	
 	private void ExamplefromAssignment(){
     	int points[][] = {{0, 4}, {1, 6}, {3, 9}, {7, 11}};
 		Intervals interval = new Intervals();

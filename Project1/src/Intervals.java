@@ -37,7 +37,12 @@ public class Intervals {
 	}
 	
 	public boolean intervalDelete(int intervalID){
-		return false;
+		//int intervalToDelete = this.intervalID;
+		//Node node1 = 
+       // rbtree.RBDelete(node1);
+      //  rbtree.RBDelete(node2);
+        return false;
+		
 	}
 	
 	public int findPOM(){

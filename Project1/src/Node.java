@@ -8,7 +8,7 @@
 public class Node {
 	
 	private Node right, left, parent;
-	private int key, p, val, maxval, color;
+	private int key, p, val, maxval, color, intervalID;
 	private Endpoint endpoint, emax;
 	
 	public Node(int key, int p, int ID) {
@@ -19,6 +19,7 @@ public class Node {
         this.p = p;
         this.endpoint = new Endpoint(key, p);
         this.emax = null;
+        this.intervalID = ID;
 	}
 
 	/**
