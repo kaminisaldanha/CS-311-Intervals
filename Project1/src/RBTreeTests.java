@@ -68,7 +68,7 @@ public class RBTreeTests {
 		tree.RBInsert(node4);
 		
 		assertEquals(tree.getSize(), 4);
-		assertEquals(tree.getHeight(), 2);
+		assertEquals(tree.getHeight(), 3);
  		assertEquals(tree.getRoot().getKey(), 4);
 		assertEquals(tree.getRoot().getColor(), 1);
 		assertEquals(tree.getRoot().getLeft().getKey(), 3);
