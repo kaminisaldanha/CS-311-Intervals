@@ -17,7 +17,7 @@ public class NodeTest {
     @Before
     public void initialize() {
     	
-    		int points[][] = {{0, 4}, {1, 6}, {3, 9}, {7, 11}};
+    	int points[][] = {{0, 4}, {1, 6}, {3, 9}, {7, 11}};
 		Intervals interval = new Intervals();
 		this.rb = interval.getRBTree();
 		
