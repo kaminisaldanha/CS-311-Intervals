@@ -17,8 +17,7 @@ public class Node {
         this.right = null;
         this.key = key;
         this.p = p;
-        this.val = this.calculateVal(this);
-        this.calculateMaxVal(this); 
+        this.val = this.calculateVal(this); 
         this.endpoint = new Endpoint(key, p);
         this.emax = this.calculateEmax(this);
         this.color = 0;
