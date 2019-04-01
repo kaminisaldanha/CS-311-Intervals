@@ -141,8 +141,8 @@ public class RBTree {
 	}
 	
 	/**
-	 * 
-	 * @param z
+	 * recolors nodes and perform rotations to ensure that red-black properties hold for new tree.
+	 * @param insert - node being inserted
 	 */
 	private void RBInsertFixup(Node insert) {
 		
@@ -193,8 +193,8 @@ public class RBTree {
 	}
 	
 	/**
-	 * 
-	 * @param x
+	 * Rotates tree to follow red-black tree rules
+	 * @param x - node being rotated
 	 */
 	private void LeftRotate(Node x) 
 	{
@@ -221,8 +221,8 @@ public class RBTree {
 	}
 	
 	/**
-	 * 
-	 * @param x
+	 * Rotates tree to follow red-black tree rules
+	 * @param x - node being rotated
 	 */ 
 	private void RightRotate(Node x) {
 		
@@ -382,9 +382,9 @@ public class RBTree {
 	}
 	
 	/**
-	 * 
-	 * @param n
-	 * @param v
+	 * Replaces the subtree at u with the at node v.
+	 * @param u - node's subtree to get replaced
+	 * @param v - node's subtree to get replaces
 	 */
 	private void RBTransplant(Node u, Node v) 
 	{
@@ -403,6 +403,11 @@ public class RBTree {
 		v.setParent(u.getParent());
 	}
 	
+	/**
+	 * Updates value and maxvalue of node when tree gets new interval
+	 * @param tree - current tree
+	 * @param node - the node in which the values have to be updates
+	 */
 	public void updateNode(RBTree tree, Node node) {
 		
 		if(node == tree.getNILNode()) {
