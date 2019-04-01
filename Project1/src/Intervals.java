@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 
 public class Intervals {
 
@@ -37,16 +39,19 @@ public class Intervals {
 	}
 	
 	public boolean intervalDelete(int intervalID){
-		int intervalToDelete = intervalID;
 		
-		Node leftEnd = findID(rbtree.getRoot(), intervalToDelete, 1);
-		Node rightEnd = findID(rbtree.getRoot(), intervalToDelete, -1);
+		List<Node> toDelete = new ArrayList<Node>();
+		findID(rbtree.getRoot(), intervalID, toDelete);
 		
-		rbtree.RBDelete(leftEnd);
-        rbtree.RBDelete(rightEnd);
-        return false;
-		
+		if(toDelete.size() == 0) {return false;} 
+		else {
+			rbtree.RBDelete(toDelete.get(0));
+			rbtree.RBDelete(toDelete.get(1));
+			rbtree.updateNode(rbtree, rbtree.getRoot());
+			return true;
+		}
 	}
+
 	
 	public int findPOM(){
 		return getRBTree().getRoot().getEmax().getValue();	
@@ -67,24 +72,39 @@ public class Intervals {
 		System.out.println("POM is: "+ intv.findPOM()); //Should return 3.
 	}
 	
-	private static Node findID(Node node, int ID, int end) 
+	private void findID(Node node, int ID, List<Node> toDelete) 
 	{
-		Node intervalIDNode;
-		Node nil = null;
-		
-		if(ID == node.getIntervalID() && end == node.getEndpoint().getP()) 
-		{
-			intervalIDNode = node;
-			return intervalIDNode;
-		}
-		else {
+		if(node == rbtree.getNILNode()) {
+			return;
+		} else {
 			
-			findID(node.getRight(), ID, end);
+			if(node.getIntervalID() == ID) {
+				toDelete.add(node);
+			}
 			
-			findID(node.getLeft(), ID, end);
+			findID(node.getLeft(), ID, toDelete);
+			findID(node.getRight(), ID, toDelete);
 			
-		}
-		return null;
+			
+		}	
 	}
+		
+		
+//		Node intervalIDNode;
+//		Node nil = null;
+//		
+//		if(ID == node.getIntervalID() && end == node.getEndpoint().getP()) 
+//		{
+//			intervalIDNode = node;
+//			return intervalIDNode;
+//		}
+//		else {
+//			
+//			findID(node.getRight(), ID, end);
+//			findID(node.getLeft(), ID, end);
+//			
+//		}
+//		return null;
+	
 	
 }
