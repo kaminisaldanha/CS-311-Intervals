@@ -228,5 +228,9 @@ public class Node {
 			this.color = color;
 	}
 	
+	public int getIntervalID(){
+		return this.intervalID;
+	}
+	
 }
 
