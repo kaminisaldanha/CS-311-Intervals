@@ -37,10 +37,13 @@ public class Intervals {
 	}
 	
 	public boolean intervalDelete(int intervalID){
-		//int intervalToDelete = this.intervalID;
-		//Node node1 = 
-       // rbtree.RBDelete(node1);
-      //  rbtree.RBDelete(node2);
+		int intervalToDelete = intervalID;
+		
+		Node leftEnd = findID(rbtree.getRoot(), intervalToDelete, 1);
+		Node rightEnd = findID(rbtree.getRoot(), intervalToDelete, -1);
+		
+		rbtree.RBDelete(leftEnd);
+        rbtree.RBDelete(rightEnd);
         return false;
 		
 	}
@@ -62,6 +65,26 @@ public class Intervals {
 			intv.intervalInsert(points[i][0], points[i][1]);
 		}
 		System.out.println("POM is: "+ intv.findPOM()); //Should return 3.
+	}
+	
+	private static Node findID(Node node, int ID, int end) 
+	{
+		Node intervalIDNode;
+		Node nil = null;
+		
+		if(ID == node.getIntervalID() && end == node.getEndpoint().getP()) 
+		{
+			intervalIDNode = node;
+			return intervalIDNode;
+		}
+		else {
+			
+			findID(node.getRight(), ID, end);
+			
+			findID(node.getLeft(), ID, end);
+			
+		}
+		return null;
 	}
 	
 }
