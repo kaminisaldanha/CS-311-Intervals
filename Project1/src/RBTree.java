@@ -45,6 +45,10 @@ public class RBTree {
 		return this.root;
 	}
 	
+	/**
+	 * Sets node to root of tree
+	 * @param n - node to set to root
+	 */
 	public void setRoot(Node n) {
 		this.root = n;
 		this.root.setColor(1);
@@ -66,6 +70,10 @@ public class RBTree {
 		return this.size;
 	}
 	
+	/**
+	 * Sets the number of internal nodes in the tree
+	 * @param size - number to set as number of internal nodes
+	 */
 	public void setSize(int size) {
 		this.size = size;
 	}
@@ -75,10 +83,15 @@ public class RBTree {
 	 * Returns the height of the tree.
 	 * @return
 	 */
-	public int getHeight() { //READ-ME: not sure if this is meant to return black height.
+	public int getHeight() { 
 		return getHeight(root);
 	}
 	
+	/**
+	 * Returns the height of the tree
+	 * @param node - node from which to start counting height
+	 * @return
+	 */
 	public int getHeight(Node node) {
 		if (node == this.nil) {return 0;}
 
@@ -93,7 +106,7 @@ public class RBTree {
 	
 	/**
 	 * To insert a node into the red black tree
-	 * @param insert
+	 * @param insert - node to insert in to tree
 	 */
 	public void RBInsert(Node insert) {
 		
@@ -244,20 +257,23 @@ public class RBTree {
 		Node y = z;
 		int yOrigColor = y.getColor();
 		
-		if(z.getLeft() == nil) {
+		if(z.getLeft() == this.nil) {
 			x = z.getRight();
 			RBTransplant(z, z.getRight());
-		} else if(z.getRight() == nil) {
+		} 
+		else if(z.getRight() == this.nil) {
 			x = z.getLeft();
 			RBTransplant(z, z.getLeft());
-		} else {
+		} 
+		else {
 			y = Minimum(z.getRight());
 			yOrigColor = y.getColor();
 			x = y.getRight();
 			
 			if(y.getParent() == z) {
 				x.setParent(y);
-			} else {
+			} 
+			else {
 				RBTransplant(y, y.getRight());
 				y.setRight(z.getRight());
 				y.getRight().setParent(y);
@@ -283,7 +299,7 @@ public class RBTree {
 	 */
 	private Node Minimum(Node x) {
 		
-		while(x.getLeft() != null) {
+		while(x.getLeft() != this.nil) {
 			x = x.getLeft();
 		}
 		
@@ -296,37 +312,37 @@ public class RBTree {
 	 * @param z
 	 */
 	private void RBDeleteFixup(Node z) {
-		while (z != this.getNILNode() && z.getColor() == 1) 
+		while (z != this.getRoot() && z.getColor() == 1) 
 		{
 			if (z == z.getParent().getLeft()) 
 			{
 				Node w = z.getParent().getRight();
 				if (w.getColor() == 0) 
 				{
-					w.setColor(1);
-					z.getParent().setColor(0);
-					LeftRotate(z.getParent());
-					w = z.getParent().getRight();
+					w.setColor(1); //Case 1
+					z.getParent().setColor(0); //Case 1
+					LeftRotate(z.getParent()); //Case 1
+					w = z.getParent().getRight(); //Case 1
 				}
 				if (w.getLeft().getColor() == 1 && w.getRight().getColor() == 1)
 				{
-					w.setColor(0);
-					z = z.getParent();
+					w.setColor(0); //Case 2
+					z = z.getParent(); //Case 2
 				}
 				else 
 				{
 					if (w.getRight().getColor() == 1) 
 					{
-						w.getLeft().setColor(1);
-						w.setColor(0);
-						RightRotate(w);
-						w = z.getParent().getRight();
+						w.getLeft().setColor(1); //Case 3
+						w.setColor(0); //Case 3
+						RightRotate(w); //Case 3
+						w = z.getParent().getRight(); //Case 3
 					}
-					w.setColor(z.getParent().getColor());
-					z.getParent().setColor(1);
-					w.getRight().setColor(1);
-					LeftRotate(z.getParent());
-					z = this.getRoot();
+					w.setColor(z.getParent().getColor()); //Case 4
+					z.getParent().setColor(1); //Case 4
+					w.getRight().setColor(1); //Case 4
+					LeftRotate(z.getParent()); //Case 4
+					z = this.getRoot(); //Case 4
 				}
 			}
 			else 
@@ -370,21 +386,21 @@ public class RBTree {
 	 * @param n
 	 * @param v
 	 */
-	private void RBTransplant(Node n, Node v) 
+	private void RBTransplant(Node u, Node v) 
 	{
-		if (n.getParent() == this.getNILNode()) 
+		if (u.getParent() == this.getNILNode()) 
 		{
 			this.root = v;
 		}
-		else if (n == n.getParent().getLeft()) 
+		else if (u == u.getParent().getLeft()) 
 		{
-			n.getParent().setLeft(v);
+			u.getParent().setLeft(v);
 		}
 		else 
 		{
-			n.getParent().setRight(v);
+			u.getParent().setRight(v);
 		}
-		v.setParent(n.getParent());
+		v.setParent(u.getParent());
 	}
 	
 	public void updateNode(RBTree tree, Node node) {
