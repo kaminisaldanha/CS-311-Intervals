@@ -7,10 +7,70 @@
   
 public class Node {
 	
-	private Node right, left, parent;
-	private int key, p, val, maxval, color, intervalID;
-	private Endpoint endpoint, emax;
+	/**
+	 * The right child of this node.
+	 */
+	private Node right;
+	/**
+	 * The left child of this node.
+	 */
+	private Node left;
+	/**
+	 * The parent of this node
+	 */
+	private Node parent;
 	
+	/**
+	 * The key is the endpoint value of this node.
+	 */
+	private int key;
+	
+	/**
+	 * If this node is a left endpoint then p will be +1, if it is a right endpoint p will be 
+	 * -1.
+	 */
+	private int p;
+	
+	/**
+	 * The sum of all the p values of the nodes in the subtree rooted at at this node.
+	 */
+	private int val;
+	
+	/**
+	 * The maximum value obtained by the the expression s(l, i) for l <= i <= r where l 
+	 * where l and r are the indices of the leftmost and rightmost endpoints in the subtree
+	 * rooted at the node.
+	 */
+	private int maxval;
+	
+	/**
+	 * The color of this node. 0 is red and 1 is black.
+	 */
+	private int color;
+	
+	/**
+	 * The endpoint that this node represents.
+	 */
+	private Endpoint endpoint;
+	
+	/**
+	 * Reference to an endpoint em where m is the value of i that maximizes s(l, i) over all i 
+	 * such that l <= i <= r where l and r denote the leftmost and rightmost indices
+	 * of the endpoints in the subtree of this node.
+	 */
+	private Endpoint emax;
+	
+	/**
+	 * This is the ID of the interval that this node belongs to.
+	 */
+	private int intervalID;
+	
+	/**
+	 * The constructor for the Node class. 
+	 * @param key is the value of the endpoint and key for this node
+	 * @param p is the value of p for this node(left endpoint = +1, right endpoint = -1)
+	 * @param ID is the intervalID that this node belongs to 
+	 */
 	public Node(int key, int p, int ID) {
 		this.parent = null;
         this.left = null;
@@ -23,8 +83,8 @@ public class Node {
 	}
 
 	/**
-	 * Returns the parent of this node.
-	 * @return
+	 * 
+	 * @return the parent of this node.
 	 */
 	public Node getParent(){
 		return this.parent;
@@ -32,15 +92,15 @@ public class Node {
 	
 	/**
 	 * 
-	 * @param sets the parent.
+	 * @param Sets the parent for this node.
 	 */
 	public void setParent(Node parent) {
 		this.parent = parent;
 	}
 	
 	/**
-	 * Returns the left child.
-	 * @return
+	 * 
+	 * @return the left child of this node.
 	 */
 	public Node getLeft(){
 		return left;
@@ -48,15 +108,15 @@ public class Node {
 	
 	/**
 	 * 
-	 * @param sets the left child.
+	 * @param Sets the left child of this node.
 	 */
 	public void setLeft(Node left) {
 		this.left = left;
 	}
 	
 	/**
-	 * Returns the right child.
-	 * @return
+	 *
+	 * @return the right child of this node.
 	 */
 	public Node getRight(){
 		return right;
@@ -64,31 +124,31 @@ public class Node {
 	
 	/**
 	 * 
-	 * @param sets the right child.
+	 * @param Sets the right child of this node.
 	 */
 	public void setRight(Node right) {
 		this.right = right;
 	}
 	
 	/**
-	 * Returns the endpoint value, which is an integer.
-	 * @return
+	 * 
+	 * @return the endpoint value, which is an integer.
 	 */
 	public int getKey(){
 		return key;
 	}
 	
 	/**
-	 * 
-	 * @param sets the endpoint value to the key.
+	 * Sets the endpoint value (key) to this key
+	 * @param key
 	 */
 	public void setKey(int key){
 		this.key = key;
 	}
 	
 	/**
-	 * Returns the value of the function p based on this endpoint.
-	 * @return
+	 * 
+	 * @return the value of the function p based on the endpoint of this node.
 	 */
 	public int getP(){
 		return p;
@@ -96,30 +156,36 @@ public class Node {
 	
 	/**
 	 * 
-	 * @param sets the value of the function p based on this endpoint
+	 * @param Sets the value of p based on the endpoint of this node.
 	 */
 	public void setP(int p){
 		this.p = p;
 	}
 	
 	/**
-	 * Returns the val of the node as described in this assignment.
-	 * @return
+	 * 
+	 * @return the val of this node.
 	 */
 	public int getVal(){
 		return this.val;
 	}
 	
 	/**
-	 * 
-	 * @param p
-	 * @return
+	 * Sets the val of this node based on the integer calculateVal returns
+	 * @param tree is the tree this node belongs to
 	 */
-	public void setVal(RBTree tree, Node node) {
+	public void setVal(RBTree tree) {
 		this.val = calculateVal(tree, this);
 	}
 	
-	private int calculateVal(RBTree tree, Node node) {
+	/**
+	 * Calculates the val for this node.
+	 * @param tree is the tree this node belongs to
+	 * @param node the node we are calculating the val for
+	 * @return the sum of this node's left child val,
+	 * right child val and its val.
+	 */
+	public int calculateVal(RBTree tree, Node node) {
 		
 		int sum, leftSum, rightSum;
 		
@@ -138,22 +204,30 @@ public class Node {
 	}
 	
 	/**
-	 * Returns the maxval of the node as described in this assignment.
-	 * @return
+	 * 
+	 * @return the max val for this node.
 	 */
 	public int getMaxVal(){
 		return maxval;
 	}
 	
 	/**
-	 * 
-	 * @param sets the maxval of the node as described in this assignment.
+	 * Sets the max val for this node by calling the calculateMaxVal function
+	 * @param tree
 	 */
-	public void setMaxVal(RBTree tree) {
-		calculateMaxVal(tree, this);
+	public void setMaxValAndEmax(RBTree tree) {
+		calculateMaxValAndEmax(tree, this);
 	}
 	
-	private void calculateMaxVal(RBTree tree, Node v) {
+	/**
+	 * Calculates the maxVal emax based on the on the maximum of the three conditions (v.left.maxval
+	 * , v.left.val + v.p, v.left.val + v.p + v.right.maxval where v is the node we are calculating
+	 * the maxVal and emax for.
+	 * @param tree is the tree this node belongs to.
+	 * @param v the node we are calculating
+	 * the maxVal and emax for.
+	 */
+	public void calculateMaxValAndEmax(RBTree tree, Node v) {
 		
 		if(v == null || v == tree.getNILNode()) {
 			v.maxval = 0;
@@ -178,8 +252,8 @@ public class Node {
 	}
 	
 	/**
-	 * Returns the Endpoint object that this node represents.
-	 * @return
+	 * 
+	 * @return the Endpoint object that this node represents.
 	 */
 	public Endpoint getEndpoint(){
 		return endpoint;
@@ -194,22 +268,24 @@ public class Node {
 	}
 	
 	/**
-	 * Returns an Endpoint object that represents emax. Calling this
-	 * method on the root node will give the Endpoint object whose getValue() provides a
-	 * point of maximum overlap..
+	 * Returns an Endpoint object that represents emax. 
 	 * @return
 	 */
 	public Endpoint getEmax(){
 		return emax;
 	}
 	
+	/**
+	 * Sets an Endpoint object that represents emax for a node.  
+	 * @param emax
+	 */
 	public void setEmax(Endpoint emax) {
 		this.emax = emax;
 	}
 	
 	/**
-	 * Returns 0 if red. Returns 1 if black.
-	 * @return
+	 *
+	 * @return 0 if red. Returns 1 if black.
 	 */
 	public int getColor(){
 		if(color == 0){
@@ -222,15 +298,18 @@ public class Node {
 	
 	/**
 	 * 
-	 * @param sets the color to either 0 if red, or 1 if black
+	 * @param Sets the color to either 0 if red, or 1 if black.
 	 */
 	public void setColor(int color){
 			this.color = color;
 	}
 	
-	public int getIntervalID(){
+	/**
+	 * 
+	 * @return the interval ID for this node.
+	 */
+	public int getIntervalID() {
 		return this.intervalID;
 	}
 	
 }
-
