@@ -7,16 +7,26 @@ public class RBTreeTests {
 	
 	// Instance variables
     private RBTree tree;
+	private Intervals interval;
 
-    @Before
-    public void initialize() {
-        tree = new RBTree();       
-    }
+
+//    @Before
+//    public void initialize() {
+//    	
+//    	int points[][] = {{0, 4}, {1, 6}, {3, 9}, {7, 11}};
+//		this.interval = new Intervals();
+//		this.tree = interval.getRBTree();
+//		
+//		for(int i=0; i<points.length; i++) {
+//			interval.intervalInsert(points[i][0], points[i][1]);
+//		}
+//    }
 
 
     /**
      * Initially, there should be only nil nodes. Height and size are 0.
      */
+    /**
     @Test
     public void rootTest() {
 		assertEquals(tree.getRoot(), tree.getNILNode());
@@ -29,6 +39,7 @@ public class RBTreeTests {
      * should have a key of 3 (color: red) and root.right should have a key of 5 (color: red).
      * Size is 3. Height should be 1. 
      */
+    /**
     @Test
 	public void addTest1() {
 		
@@ -54,6 +65,7 @@ public class RBTreeTests {
      * should have a key of 3 (color: black), root.right should have a key of 5 (color: black)
      * and root.right.right should have a key of 6 (color: red). Size is 4 and height should be 2.
      */
+    /**
     @Test
     public void addTest2() {
     
@@ -160,7 +172,40 @@ public class RBTreeTests {
 		tree = intervals.getRBTree();
 		assertEquals(8, tree.getSize());
 	}
+*/
+    @Test
+    public void simpleDelete() {
+    	
+    	tree = new RBTree();
+    	
+    	Node node1 = new Node(0, 0, 0);
+		Node node2 = new Node(4, 0 ,0);
+		Node node3 = new Node(1, 0, 0);
+		Node node4 = new Node(6, 0, 0);
 
+    	
 
+        // Create simple tree
+	    tree.RBInsert(node1);
+        tree.RBInsert(node2);
+        tree.RBInsert(node3);
+        tree.RBInsert(node4);
+
+        // Delete root.left
+        tree.RBDelete(node2);
+
+        // Test tree keys
+        assertEquals(3, tree.getRoot().getKey());
+        assertEquals(1, tree.getRoot().getLeft().getKey());
+        assertEquals(4, tree.getRoot().getRight().getKey());
+
+        // Test tree parents
+        //assertTrue(tree.getRoot().getParent().isNil());
+        assertEquals(3, tree.getRoot().getLeft().getParent().getKey());
+        assertEquals(3, tree.getRoot().getRight().getParent().getKey());
+       
+        // Test size
+       // assertEquals(3, tree.getSize());
+    }
 
 }
