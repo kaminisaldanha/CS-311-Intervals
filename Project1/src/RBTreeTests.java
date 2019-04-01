@@ -26,7 +26,7 @@ public class RBTreeTests {
     /**
      * Initially, there should be only nil nodes. Height and size are 0.
      */
-    /**
+   
     @Test
     public void rootTest() {
 		assertEquals(tree.getRoot(), tree.getNILNode());
@@ -39,7 +39,7 @@ public class RBTreeTests {
      * should have a key of 3 (color: red) and root.right should have a key of 5 (color: red).
      * Size is 3. Height should be 1. 
      */
-    /**
+    
     @Test
 	public void addTest1() {
 		
@@ -65,7 +65,6 @@ public class RBTreeTests {
      * should have a key of 3 (color: black), root.right should have a key of 5 (color: black)
      * and root.right.right should have a key of 6 (color: red). Size is 4 and height should be 2.
      */
-    /**
     @Test
     public void addTest2() {
     
@@ -172,7 +171,7 @@ public class RBTreeTests {
 		tree = intervals.getRBTree();
 		assertEquals(8, tree.getSize());
 	}
-*/
+
     @Test
     public void simpleDelete() {
     	
