@@ -2,10 +2,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Intervals {
-
+	
+	/**
+	 * Value of intervalID
+	 */
 	private int intervalID;
+	
+	/**
+	 * Red-Black tree used
+	 */
 	public RBTree rbtree;
 	
+	/**
+	 * Intervals constructor, set intervalID and tree
+	 */
 	public Intervals(){
 		this.intervalID = 1;
 		this.rbtree = new RBTree();
@@ -21,11 +31,7 @@ public class Intervals {
 		
 		//intializing node
 		Node node1 = new Node(a, 1, this.intervalID); //left endpoint
-		Node node2 = new Node(b, -1, this.intervalID); //right endpoint
-		
-		//setting the val for node 1 and 2
-//		node1.setVal(rbtree, node1); 
-//		node2.setVal(rbtree, node2); 
+		Node node2 = new Node(b, -1, this.intervalID); //right endpoint 
 		
 		//every interval should be assigned a new ID
 		this.intervalID++;
@@ -38,6 +44,12 @@ public class Intervals {
 
 	}
 	
+	/**
+	 *  Deletes the interval whose ID is intervalID. 
+	 *  Returns true if deletion was successful.
+	 * @param intervalID
+	 * @return
+	 */
 	public boolean intervalDelete(int intervalID){
 		
 		List<Node> toDelete = new ArrayList<Node>();
@@ -52,15 +64,26 @@ public class Intervals {
 		}
 	}
 
-	
+	/**
+	 * Finds the endpoint that has maximum overlap and returns its value. 
+	 * @return
+	 */
 	public int findPOM(){
 		return getRBTree().getRoot().getEmax().getValue();	
 	}
 	
+	/**
+	 * Returns the red-black tree used, which is an object of type RBTree.
+	 * @return
+	 */
 	public RBTree getRBTree(){
 		return rbtree;
 	}
 	
+	/**
+	 * Suggest method for testing
+	 * @param args
+	 */
 	public static void main(String [] args) {
 		int points[][] = {{0, 4}, {1, 6}, {3, 9}, {7, 11}};
 		Intervals intv = new Intervals();
@@ -72,6 +95,12 @@ public class Intervals {
 		System.out.println("POM is: "+ intv.findPOM()); //Should return 3.
 	}
 	
+	/**
+	 * Helper method for intervalDelee
+	 * @param node - node to start the recursive method
+	 * @param ID - interval node id to fine
+	 * @param toDelete - list of nodes of tree to delete
+	 */
 	private void findID(Node node, int ID, List<Node> toDelete) 
 	{
 		if(node == rbtree.getNILNode()) {
@@ -88,23 +117,5 @@ public class Intervals {
 			
 		}	
 	}
-		
-		
-//		Node intervalIDNode;
-//		Node nil = null;
-//		
-//		if(ID == node.getIntervalID() && end == node.getEndpoint().getP()) 
-//		{
-//			intervalIDNode = node;
-//			return intervalIDNode;
-//		}
-//		else {
-//			
-//			findID(node.getRight(), ID, end);
-//			findID(node.getLeft(), ID, end);
-//			
-//		}
-//		return null;
-	
 	
 }
