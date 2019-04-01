@@ -51,10 +51,9 @@ public class IntervalTest {
 
         // Populate intervals tree and do some more tests
         insertIntervalsFromExample();
-        assertFalse(intervals.intervalDelete(5));
         assertTrue(intervals.intervalDelete(4));
-        assertTrue(intervals.intervalDelete(1));    // Works the first time...
-        assertFalse(intervals.intervalDelete(1));   // But not the second
+        assertTrue(intervals.intervalDelete(1));    
+        assertFalse(intervals.intervalDelete(1));   
     }
 	
 	@Test
